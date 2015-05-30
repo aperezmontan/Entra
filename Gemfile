@@ -33,6 +33,9 @@ gem 'dotenv-rails', :require => 'dotenv/rails-now'
 gem 'pry'
 gem 'pry-rails'
 
+# Twillio
+gem 'twilio-ruby'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'
