@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :clients, except: [:index, :new]
   resources :places, except: [:index, :new]
   resources :keys, except: [:index, :new]
+  resources :twillio, only: [:new]
 
   get 'login'   => 'sessions#new'
   get 'logout'  => 'sessions#destroy'
