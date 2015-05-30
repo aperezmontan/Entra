@@ -1,1 +1,9 @@
-Users !!
+Welcome
+<div ng-controller='UserController as userCtrl'>
+  <ul>
+    <li>{{userCtrl.user.first_name}}</li>
+  </ul>
+</div>
+<%= javascript_tag do %>
+  var user = <%=raw @user.to_json %>;
+<% end %>

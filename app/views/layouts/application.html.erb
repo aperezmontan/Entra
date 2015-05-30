@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="entraApp">
 <head>
   <title>Entra</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<h5>Entra</h5>
+<%= render 'layouts/nav' %>
 <%= yield %>
 
 </body>
