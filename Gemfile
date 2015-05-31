@@ -33,7 +33,7 @@ gem 'dotenv-rails', :require => 'dotenv/rails-now'
 gem 'pry'
 gem 'pry-rails'
 
-# Twillio
+# Twilio
 gem 'twilio-ruby'
 
 
