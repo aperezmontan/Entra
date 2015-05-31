@@ -8,13 +8,25 @@ Welcome
   var user = <%=raw @user.to_json %>;
 <% end %>
 
-Properties
+<div class="properties">
+<h3>Properties</h3>
 <% if @user.places.count > 0 %>
   <%= render @user.places %>
 <% else %>
   <div>You don't have any properties yet</div>
 <% end %>
 <%= link_to "Create new place", new_place_path %>
+</div>
+
+<div class="clients">
+<h3>Clients</h3>
+<% if @user.clients.count > 0 %>
+  <%= render @user.clients %>
+<% else %>
+  <div>You don't have any clients yet</div>
+<% end %>
+<%= link_to "Add a new client", new_client_path %>
+</div>
 
 <%= form_tag send_email_path do %>
   <%= submit_tag 'Email'%>

@@ -27,8 +27,7 @@ ActiveRecord::Schema.define(version: 20150529003655) do
   end
 
   create_table "clients", force: :cascade do |t|
-    t.string   "first_name", null: false
-    t.string   "last_name",  null: false
+    t.string   "name",       null: false
     t.string   "phone",      null: false
     t.integer  "user_id",    null: false
     t.string   "email",      null: false
