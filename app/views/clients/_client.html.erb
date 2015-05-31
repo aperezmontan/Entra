@@ -1,7 +1,6 @@
-<div>
-  <h5><%= client.name %></h5>
-  <ul>
-    <li><%= client.phone %></li>
-    <li><%= client.email %></li>
-  </ul>
+<div class="list-group-item individual-item">
+  <%= client.name %><br>
+  <i class="fa fa-phone"></i>: <%= client.phone %><br>
+  <i class="fa fa-envelope-o"></i>: <%= client.email %><br>
+  <i class="fa fa-key"></i>: Send <%= client.name  %> a new key<br>
 </div>

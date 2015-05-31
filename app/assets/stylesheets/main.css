@@ -10,3 +10,9 @@
 .panel {
   border: none;
 }
+
+.individual-item {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
