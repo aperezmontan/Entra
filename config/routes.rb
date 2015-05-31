@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :clients, except: [:index]
   resources :places, except: [:index]
   resources :keys, except: [:index, :new]
-  resources :twillio, only: [:new]
 
   get 'login'   => 'sessions#new'
   get 'logout'  => 'sessions#destroy'
@@ -13,6 +12,7 @@ Rails.application.routes.draw do
 
   get 'user_client_keys/:id' => "users#keys"
   get 'client_keys/:key_id/status/:status' => "users#set_status"
+  get 'test/sms' => "twilio#send_text_message" # Should probably be a post
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
