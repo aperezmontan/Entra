@@ -1,1 +1,6 @@
-client_keys_controller.rb
+class ClientKeysController < ApplicationController
+
+  def update
+  end
+
+end

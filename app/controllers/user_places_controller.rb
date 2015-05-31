@@ -1,1 +1,2 @@
-user_places_controller.rb
+class UserPlacesController < ApplicationController
+end
