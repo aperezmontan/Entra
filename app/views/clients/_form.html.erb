@@ -1,0 +1,9 @@
+<%= form_for @client do |f| %>
+<%=  f.label :name %>
+<%=  f.text_field :name, placeholder: "Nick, Amy C., Dogsitter"  %>
+<%=  f.label :phone %>
+<%=  f.text_field :phone %>
+<%=  f.label :email %>
+<%=  f.text_field :email %>
+<%=  f.submit %>
+<% end %>
