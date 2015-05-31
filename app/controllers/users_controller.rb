@@ -38,9 +38,9 @@ class UsersController < ApplicationController
   end
 
   def send_mail
-    client = Client.first_name
+    client = Client.first
     clientKey = ClientKey.first
-    ClientMailer.buzzer_email(client,clientKey.hashify).deliver_now
+    ClientMailer.buzzer_email(client,clientKey.hashify,current_user).deliver_now
     redirect_to :back  
   end
 
