@@ -3,7 +3,7 @@ class TwilioController < ApplicationController
 
   def send_text_message
     number_to_send_to = params[:user_phone]
-    @twilio.account.sms.messages.create(
+    @twilio.account.messages.create(
       from: "+1#{@twilio_phone_number}",
       to: number_to_send_to,
       body: "Hi <ENTER USER> from #{number_to_send_to}. To unlock your door. Please reply to this message."
