@@ -8,12 +8,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= render 'layouts/nav' %>
-<%= flash[:warning] %>
-<%= flash[:error] %>
-<%= flash[:success] %>
-<%= yield %>
-
+  <div class="container">
+    <%= render 'layouts/nav' %>
+    <%= flash[:warning] %>
+    <%= flash[:error] %>
+    <%= flash[:success] %>
+    <%= yield %>
+  </div>
 </body>
 </html>
