@@ -1,25 +1,27 @@
 <div class="user_welcome"><h3>Hi <%= current_user.first_name %></h3><div>
 
-<div class="properties">
-<h3>Properties</h3>
-<% if @user.places.count > 0 %>
-  <%= render @user.places %>
-<% else %>
-  <div>You don't have any properties yet</div>
-<% end %>
-<%= link_to "Create new place", new_place_path %>
+<div class="panel panel-default col-md-4">
+  <div class="panel-heading"><span class="text-left">Properties</span><i class="fa fa-plus pull-right"></i></div>
+  <div class="panel-body">
+    <% if @user.places.count > 0 %>
+      <%= render @user.places %>
+    <% else %>
+      <div>You don't have any properties yet</div>
+    <% end %>
+  </div>
+</div>
+<div class="panel panel-default col-md-4">
+  <div class="panel-heading"><span class="text-left">Keys</span><i class="fa fa-plus pull-right"></i></div>
+  <div class="panel-body">Panel Content</div>
+</div>
+<div class="panel panel-default col-md-4">
+  <div class="panel-heading"><span class="text-left">Clients</span><i class="fa fa-plus pull-right"></i></div>
+  <div class="panel-body">
+    <% if @user.clients.count > 0 %>
+      <%= render @user.clients %>
+    <% else %>
+      <div>You don't have any clients yet</div>
+    <% end %>
+  </div>
 </div>
 
-<div class="clients">
-<h3>Clients</h3>
-<% if @user.clients.count > 0 %>
-  <%= render @user.clients %>
-<% else %>
-  <div>You don't have any clients yet</div>
-<% end %>
-<%= link_to "Add a new client", new_client_path %>
-</div>
-
-<%= form_tag send_email_path do %>
-  <%= submit_tag 'Email'%>
-<% end %>
