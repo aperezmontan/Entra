@@ -1,6 +1,6 @@
-class CreateUserPlaces < ActiveRecord::Migration
+class CreateProperties < ActiveRecord::Migration
   def change
-    create_table :user_places do |t|
+    create_table :properties do |t|
       t.references :user
       t.references :place
 
