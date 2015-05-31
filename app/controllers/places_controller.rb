@@ -17,4 +17,11 @@ class PlacesController < ApplicationController
 
   end
 
+  def keys
+    place = Place.find_by(id: params[:id])
+    
+    @response = { key: '12345', open: false}
+    render :json => @response
+  end
+
 end

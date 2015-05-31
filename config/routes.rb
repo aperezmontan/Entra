@@ -10,14 +10,14 @@ Rails.application.routes.draw do
   get 'signup'   => 'users#new'
   root 'sessions#new'
 
-  get 'user_client_keys/:id' => "users#keys"
+  get 'place_keys/:id' => "places#keys"
   get 'client_keys/:key_id/status/:status' => "users#set_status"
   get 'test/sms' => "twilio#send_text_message" # Should probably be a post
   post 'test/sms/reply' => "twilio#receive_text_message"
 
 
 
-
+  post 'send_email' => "users#send_mail"
 
 
 

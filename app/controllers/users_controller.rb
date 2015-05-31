@@ -37,14 +37,12 @@ class UsersController < ApplicationController
 
   end
 
-  def keys
-    puts "user : #{params[:id]}"
-    @response = { key: '12345', open: false}
-    render :json => @response
-  end
-
-  def set_status
-    render :json => params
+  def send_mail
+    client = Client.new
+    client.first_name = "Luis"
+    client.email = "echenique11@hotmail.com"
+    ClientMailer.buzzer_email(client).deliver_now
+    redirect_to :back  
   end
 
   private
