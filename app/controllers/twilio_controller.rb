@@ -11,8 +11,8 @@ class TwilioController < ApplicationController
   end
 
   def receive_text_message
-    p params
-    binding.pry
+    print "*" * 50; puts
+    puts params
   end
 
   private
