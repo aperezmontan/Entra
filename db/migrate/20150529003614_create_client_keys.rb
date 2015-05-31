@@ -4,7 +4,8 @@ class CreateClientKeys < ActiveRecord::Migration
       t.references :client
       t.references :key
       t.datetime :used_at
-
+      t.boolean :requested
+      
       t.timestamps null: false
     end
   end
