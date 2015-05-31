@@ -42,20 +42,13 @@ class UsersController < ApplicationController
     client.first_name = "Luis"
     client.email = "echenique11@hotmail.com"
     ClientMailer.buzzer_email(client).deliver_now
-    redirect_to :back  
+    redirect_to :back
   end
 
   private
 
   def set_user
     @user = User.find_by(id: params[:id])
-  end
-
-  def require_login
-    unless logged_in?
-      flash[:error] = "Please sign in."
-      redirect_to login_path
-    end
   end
 
   def user_params
