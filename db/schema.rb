@@ -17,13 +17,14 @@ ActiveRecord::Schema.define(version: 20150529003655) do
   enable_extension "plpgsql"
 
   create_table "client_keys", force: :cascade do |t|
-    t.integer  "client_id",        null: false
-    t.integer  "key_id",           null: false
-    t.datetime "used_at",          null: false
-    t.boolean  "unlimited_access", null: false
-    t.boolean  "requested",        null: false
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "client_id",                        null: false
+    t.integer  "key_id",                           null: false
+    t.datetime "used_at"
+    t.boolean  "unlimited_access", default: false
+    t.boolean  "requested",        default: false
+    t.string   "hashify"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "clients", force: :cascade do |t|

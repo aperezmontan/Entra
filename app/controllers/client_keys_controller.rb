@@ -9,4 +9,8 @@ class ClientKeysController < ApplicationController
     clientKey.save
     render :json => params
   end
+
+  def request_open_show
+    @clientKey = ClientKey.find_by(hashify: params[:hash])
+  end
 end

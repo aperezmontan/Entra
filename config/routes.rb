@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'client_key/:client_key_id/status/:status' => "client_keys#used_at"
   get 'test/sms' => "twilio#send_text_message" # Should probably be a post
   post 'test/sms/reply' => "twilio#receive_text_message"
-
+  get 'request_open_show/:hash' => "clients#request_open_show"
 
 
   post 'send_email' => "users#send_mail"
