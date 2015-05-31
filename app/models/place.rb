@@ -1,3 +1,4 @@
 class Place < ActiveRecord::Base
-  belongs_to :user, foreign_key: :admin_id
+  has_one :user, foreign_key: :admin_id
+  has_many :users
 end

@@ -7,3 +7,11 @@ Welcome
 <%= javascript_tag do %>
   var user = <%=raw @user.to_json %>;
 <% end %>
+
+Properties
+<% if @user.places.count > 0 %>
+  <%= render @user.places %>
+<% else %>
+  <div>You don't have any properties yet</div>
+<% end %>
+<button_to
