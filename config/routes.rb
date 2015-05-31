@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users, except: :index
   resources :clients, except: [:index]
   resources :places, except: [:index]
-  resources :keys, except: [:index, :new]
+  resources :keys, except: [:index]
 
   get 'login'   => 'sessions#new'
   get 'logout'  => 'sessions#destroy'
