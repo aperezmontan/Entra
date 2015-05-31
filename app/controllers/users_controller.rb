@@ -38,11 +38,10 @@ class UsersController < ApplicationController
   end
 
   def send_mail
-    client = Client.new
-    client.first_name = "Luis"
-    client.email = "echenique11@hotmail.com"
-    ClientMailer.buzzer_email(client).deliver_now
-    redirect_to :back
+    client = Client.first
+    clientKey = ClientKey.first
+    ClientMailer.buzzer_email(client,clientKey.hashify,current_user).deliver_now
+    redirect_to :back  
   end
 
   private

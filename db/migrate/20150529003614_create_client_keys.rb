@@ -3,9 +3,10 @@ class CreateClientKeys < ActiveRecord::Migration
     create_table :client_keys do |t|
       t.references :client, null: false
       t.references :key, null: false
-      t.datetime :used_at, null: false
-      t.boolean :unlimited_access, null:false
-      t.boolean :requested, null: false
+      t.datetime :used_at
+      t.boolean :unlimited_access, default: false
+      t.boolean :requested, default: false
+      t.string :hashify
 
       t.timestamps null: false
     end
