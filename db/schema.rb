@@ -17,52 +17,54 @@ ActiveRecord::Schema.define(version: 20150529003655) do
   enable_extension "plpgsql"
 
   create_table "client_keys", force: :cascade do |t|
-    t.integer  "client_id"
-    t.integer  "key_id"
-    t.datetime "used_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "client_id",        null: false
+    t.integer  "key_id",           null: false
+    t.datetime "used_at",          null: false
+    t.boolean  "unlimited_access", null: false
+    t.boolean  "requested",        null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "clients", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "phone"
-    t.integer  "user_id"
-    t.string   "email"
+    t.string   "first_name", null: false
+    t.string   "last_name",  null: false
+    t.string   "phone",      null: false
+    t.integer  "user_id",    null: false
+    t.string   "email",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "keys", force: :cascade do |t|
-    t.integer  "place_id"
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.integer  "place_id",   null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "places", force: :cascade do |t|
-    t.text     "address"
-    t.string   "nick_name"
-    t.integer  "admin_id"
-    t.integer  "user_id"
+    t.text     "address",    null: false
+    t.string   "nick_name",  null: false
+    t.integer  "admin_id",   null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "properties", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "place_id"
+    t.integer  "user_id",    null: false
+    t.integer  "place_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "password_digest"
+    t.string   "first_name",      null: false
+    t.string   "last_name",       null: false
+    t.string   "email",           null: false
+    t.string   "password_digest", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
