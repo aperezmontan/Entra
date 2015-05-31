@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_login, except: [:new, :create]
+  before_filter :require_login, except: [:new, :create,:keys,:set_status]
   before_action :set_user
 
   def show
@@ -37,6 +37,16 @@ class UsersController < ApplicationController
 
   end
 
+  def keys
+    puts "user : #{params[:id]}"
+    @response = { key: '12345', open: false}
+    render :json => @response
+  end
+
+  def set_status
+    render :json => params
+  end
+
   private
 
   def set_user
@@ -53,4 +63,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name,:last_name,:email,:password)
   end
+
 end
