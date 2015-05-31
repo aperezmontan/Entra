@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'user_client_keys/:id' => "users#keys"
   get 'client_keys/:key_id/status/:status' => "users#set_status"
   get 'test/sms' => "twilio#send_text_message" # Should probably be a post
+  post 'test/sms/reply' => "twilio#receive_text_message"
 
 
 
