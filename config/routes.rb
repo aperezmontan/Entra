@@ -14,6 +14,15 @@ Rails.application.routes.draw do
   get 'client_keys/:key_id/status/:status' => "users#set_status"
   get 'test/sms' => "twilio#send_text_message" # Should probably be a post
 
+
+
+
+
+
+
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
