@@ -9,3 +9,4 @@
 ari = User.new(first_name: "Ari", last_name: "Perez", email: "ari@me.com", password_digest: "12345")
 
 ari.save
+
