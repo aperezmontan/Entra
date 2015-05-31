@@ -44,11 +44,4 @@ class PlacesController < ApplicationController
     params.require(:place).permit(:nick_name, :address)
   end
 
-  def require_login
-    unless logged_in?
-      flash[:error] = "Please sign in."
-      redirect_to login_path
-    end
-  end
-
 end
