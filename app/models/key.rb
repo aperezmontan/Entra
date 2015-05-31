@@ -10,4 +10,8 @@ class Key < ActiveRecord::Base
     end
     nil
   end
+
+  def cleaner_time(start_or_end)
+    self.send(start_or_end).strftime("%I:%M %p %a %b %e, %Y")
+  end
 end
