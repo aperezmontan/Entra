@@ -31,10 +31,17 @@ class PlacesController < ApplicationController
 
   end
 
-  def keys
+  def key
     place = Place.find_by(id: params[:id])
-
-    @response = { key: '12345', open: false}
+    if place 
+      keys = place.available_keys
+      client_key = Key.get_available_key(keys)
+    end
+    if client_key
+      @response = { key: client_key.id, open: true}
+    else 
+      @response = { open: false}
+    end
     render :json => @response
   end
 
