@@ -14,7 +14,7 @@ Properties
 <% else %>
   <div>You don't have any properties yet</div>
 <% end %>
-<button_to
+<%= link_to "Create new place", new_place_path %>
 
 <%= form_tag send_email_path do %>
   <%= submit_tag 'Email'%>
