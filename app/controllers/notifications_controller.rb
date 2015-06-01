@@ -12,7 +12,7 @@ class NotificationsController < ApplicationController
   private
 
   def notification_params
-    params.require(:notification).permit(:user_id,:client_key_id,:message)
+    params.permit(:user_id,:key_id,:message)
   end
 
 end

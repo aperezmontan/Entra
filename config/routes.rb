@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :guests, except: [:index, :show]
   resources :places, except: [:index]
   resources :keys, except: [:index]
+  resources :notifications, only: [:create]
 
   get 'login'   => 'sessions#new'
   get 'logout'  => 'sessions#destroy'
