@@ -40,7 +40,7 @@ class PlacesController < ApplicationController
   def key
     place = Place.find_by(id: params[:id])
     if place.master_unlock
-      @response = { master: current_user.id, open: true}      
+      @response = { master: true, open: true}      
     elsif place.available_key
       key = place.available_key
       @response = { key: key.id, open: true}      
@@ -48,6 +48,13 @@ class PlacesController < ApplicationController
       @response = { open: false }
     end
     render :json => @response
+  end
+
+  def update_master
+    place = Place.find_by(id: params[:id])
+    place.master_unlock = false
+    place.save
+    render :json => params
   end
 
   private

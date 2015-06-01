@@ -21,7 +21,7 @@ class KeysController < ApplicationController
     if new_key.save
       send_mail new_key
       flash[:success] = "New key created"
-      redirect_to user_path(current_user)
+      redirect_to place_path(new_key.place)
     else
       flash[:error] = "Key could not be created :("
       redirect_to user_path(current_user)
@@ -44,7 +44,7 @@ class KeysController < ApplicationController
 
   def used_at
     @key.used_at = Time.now if (params[:status] == 'opened')
-    key.save
+    @key.save
     render :json => params
   end
 
