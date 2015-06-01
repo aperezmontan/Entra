@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Hi <%= current_user.first_name %></h4>
+      #####<br>
+      #####<br>
+      #####<br>
+
+
+    </div>
+    <div class="col-md-6">
+        <% if @user.keys.count > 0 %>
+          <%= render @user.keys %>
+        <% else %>
+          <div>You don't have any keys yet</div>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+<div id="form-drop-down" class="col-md-12 text-center"><hr></div>
+
+<div class="container">
+  <div class="row">
+    <div class="panel panel-default col-md-4">
+      <div class="panel-heading"><span class="text-left">Places</span><i id="add-place" class="fa fa-plus pull-right"></i></div>
+      <div class="panel-body">
+        <% if @user.places.count > 0 %>
+          <%= render @user.places %>
+        <% else %>
+          <div>You don't have any properties yet</div>
+        <% end %>
+      </div>
+    </div>
+    <div class="panel panel-default col-md-4">
+      <div class="panel-heading"><span class="text-left">Keys</span><i id="add-key" class="fa fa-plus pull-right"></i></div>
+      <div class="panel-body">
+        <!-- VERY HACKY, MUST BE REPLACED !!!! -->
+        <% if @user.keys.count > 0 %>
+          <%= render @user.keys %>
+        <% else %>
+          <div>You don't have any keys yet</div>
+        <% end %>
+      </div>
+    </div>
+    <div class="panel panel-default col-md-4">
+      <div class="panel-heading"><span class="text-left">Guests</span><i id="add-guest" class="fa fa-plus pull-right"></i></div>
+      <div class="panel-body">
+        <% if @user.guests.count > 0 %>
+          <%= render @user.guests %>
+        <% else %>
+          <div>You don't have any guests yet</div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href = "/keys/new">Make new guest key</a>
