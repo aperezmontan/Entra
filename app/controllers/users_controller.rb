@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_login, except: [:new, :create,:keys,:set_status]
   before_action :set_user
+  # before_action: time_till, only:[:show]
 
   def show
   end
@@ -41,7 +42,7 @@ class UsersController < ApplicationController
     client = Client.first
     clientKey = ClientKey.first
     ClientMailer.buzzer_email(client,clientKey.hashify,current_user).deliver_now
-    redirect_to :back  
+    redirect_to :back
   end
 
   private

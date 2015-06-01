@@ -25,9 +25,10 @@ class ClientKeysController < ApplicationController
     @clientKey = ClientKey.find_by(hashify: params[:hash])
   end
 
-  private 
+  private
 
   def client_key_params
     params.require(:client_key).permit(:requested,:used_at,:client_id,:key_id)
   end
+
 end
