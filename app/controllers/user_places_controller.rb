@@ -1,2 +1,0 @@
-class UserPlacesController < ApplicationController
-end

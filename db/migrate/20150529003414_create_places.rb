@@ -5,6 +5,7 @@ class CreatePlaces < ActiveRecord::Migration
       t.string :nickname, null: false
       t.integer :admin_id, null: false
       t.boolean :master_unlock, default: false, null: false
+      t.boolean :default_place, default: false, null: false
 
       t.timestamps null: false
     end
