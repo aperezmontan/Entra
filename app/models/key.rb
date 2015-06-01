@@ -1,7 +1,7 @@
 require 'securerandom'
 
 class Key < ActiveRecord::Base
-  has_many :logs
+  has_many :logs, as: :loggable
   belongs_to :place
   belongs_to :guest
   before_create :prepare_for_create

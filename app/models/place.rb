@@ -2,7 +2,7 @@ class Place < ActiveRecord::Base
 
   belongs_to :admin, class_name: 'User'
   has_many :keys
-  has_many :logs, through: :keys
+  has_many :logs, as: :loggable
 
   def available_key
     current_time = Time.new.getutc
