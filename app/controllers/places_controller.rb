@@ -39,13 +39,11 @@ class PlacesController < ApplicationController
 
   def key
     place = Place.find_by(id: params[:id])
-    if place
-      keys = place.available_keys
-      client_key = Key.get_available_key(keys)
-    end
-    if client_key
-      @response = { key: client_key.id, open: true}
-      @response = { key: client_key.client_id, open: true } if client_key.client_id == 0
+    if place.master_unlock
+      @response = { master: current_user.id, open: true}      
+    elsif place.available_key
+      key = place.available_key
+      @response = { key: key.id, open: true}      
     else
       @response = { open: false }
     end

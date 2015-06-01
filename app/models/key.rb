@@ -17,7 +17,7 @@ class Key < ActiveRecord::Base
   end
 
   def cleaner_time(start_or_end)
-    self.send(start_or_end).strftime("%I:%M %p %a %b %e, %Y")
+    self.send(start_or_end).getlocal.strftime("%I:%M %p %a %b %e, %Y")
   end
 
   def place_and_time
