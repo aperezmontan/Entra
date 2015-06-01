@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150531211705) do
+ActiveRecord::Schema.define(version: 20150601195728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20150531211705) do
     t.datetime "updated_at",                       null: false
   end
 
+  create_table "logs", force: :cascade do |t|
+    t.integer  "key_id",     null: false
+    t.text     "messages",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.integer  "key_id",     null: false
@@ -51,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150531211705) do
     t.string   "nickname",                      null: false
     t.integer  "admin_id",                      null: false
     t.boolean  "master_unlock", default: false, null: false
+    t.boolean  "default_place", default: false, null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
   end
