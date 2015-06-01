@@ -6,7 +6,9 @@ class Key < ActiveRecord::Base
   def self.get_available_key keys
     keys.each do |key|
       client_key = key.client_keys.find_by(requested: true, used_at: nil)
+      master_key = key.client_keys.find_by(requested: true, unlimited_access: true)
       return client_key if client_key
+      return master_key if master_key
     end
     nil
   end

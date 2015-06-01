@@ -1,4 +1,7 @@
 <div class="list-group-item individual-item">
   <%= place.nick_name %><br>
   <i class="fa fa-home"></i>: <%= place.address %>
+  <%= link_to client_key_path(0), method: :put, class: "btn btn-default" do %>
+      <i class="fa fa-lock"></i> Unlock <%= place.nick_name %>
+  <% end %>
 </div>
