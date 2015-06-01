@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :sessions, only: [:create]
-  resources :users, except: [:index]
+  resources :users, except: [:index, :show]
   resources :guests, except: [:index, :show]
-  resources :places, except: [:index, :show]
+  resources :places, except: [:index]
   resources :keys, except: [:index]
 
   get 'login'   => 'sessions#new'
