@@ -21,8 +21,7 @@ class KeysController < ApplicationController
     if new_key.save
       send_mail new_key
       flash[:success] = "New key created"
-      # redirect_to user_path(current_user)
-      render :json => new_key
+      redirect_to user_path(current_user)
     else
       flash[:error] = "Key could not be created :("
       redirect_to user_path(current_user)
