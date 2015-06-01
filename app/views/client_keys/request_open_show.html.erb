@@ -1,2 +1,40 @@
-display button
-<%= @clientKey.id %>
+<% if @clientKey.used_at %>
+  <div id="notificationContainer">
+    <p>This key has been already used. Please notify <%= @clientKey.client.user.first_name %></p>
+    <%= form_tag notifications_path do %>
+      <%= hidden_field_tag :user_id, @clientKey.client.user.id %>
+      <%= hidden_field_tag :client_key_id, @clientKey.id %>
+      <%= text_area_tag :message %>
+      <%= submit_tag "Notify",class: 'notifyBtn' %>
+    <% end %>
+  </div>
+<% else %>
+  <div id="openContainer">
+    <% if @clientKey.is_available? %>
+      
+      <% if !@clientKey.requested %> 
+        <%= form_for @clientKey do |field| %>
+          <input type="hidden" name="client_key[requested]" value="true" />
+          <%= submit_tag "Open",class: 'requestBtn' %>
+        <% end %>
+      <% else %>
+          <p>Please wait until the buzzer open the door for you, if it doesn't :</p>
+          <%= form_tag notifications_path do %>
+            <%= hidden_field_tag :user_id, @clientKey.client.user.id %>
+            <%= hidden_field_tag :client_key_id, @clientKey.id %>
+            <%= text_area_tag :message %>
+            <%= submit_tag "Notify",class: 'notifyBtn' %>
+          <% end %>
+      <% end %>
+
+    <% else %>
+
+      <div id="available_in"></div>
+      <%= javascript_tag do %>
+        var startDate = <%= raw @clientKey.get_start_date_string.to_json%>;
+        availableIn(startDate);
+      <% end %>
+
+    <% end %>
+  </div>
+<% end %>
