@@ -45,9 +45,8 @@ class ClientKeysController < ApplicationController
 
   private
 
-  def send_mail clientkey
-    ClientMailer.buzzer_email(clientKey.client,clientKey.hashify,current_user).deliver_now
-    redirect_to :back
+  def send_mail clientKey
+    ClientMailer.buzzer_email(base_url,clientKey,current_user).deliver_now
   end
 
   def client_key_params
