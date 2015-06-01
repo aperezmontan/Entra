@@ -58,8 +58,4 @@ class ClientKey < ActiveRecord::Base
 
   private
 
-  def set_hashify
-    self.hashify = SecureRandom.urlsafe_base64
-  end
-
 end
