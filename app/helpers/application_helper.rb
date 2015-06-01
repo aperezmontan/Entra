@@ -7,4 +7,5 @@ module ApplicationHelper
     when :alert then return "alert alert-warning"
     end
   end
+
 end

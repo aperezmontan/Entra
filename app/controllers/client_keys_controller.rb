@@ -1,5 +1,22 @@
 class ClientKeysController < ApplicationController
 
+  def new
+    @client_key = ClientKey.new
+    @user_keys = Key.where(" place_id == ? ", current_user.places.ids)
+  end
+
+  def create
+    new_client_key = ClientKey.new(get_params)
+    if new_client_key.save
+      send_mail(new_client_key)
+      flash[:success] = "New access created"
+      redirect_to user_path(current_user)
+    else
+      flash[:error] = "Access could not be created :("
+      redirect_to user_path(current_user)
+    end
+
+  end
 
   def update
     clientKey = ClientKey.find_by(id: params[:id])
@@ -25,9 +42,20 @@ class ClientKeysController < ApplicationController
     @clientKey = ClientKey.find_by(hashify: params[:hash])
   end
 
-  private 
+
+  private
+
+  def send_mail clientkey
+    ClientMailer.buzzer_email(clientKey.client,clientKey.hashify,current_user).deliver_now
+    redirect_to :back
+  end
 
   def client_key_params
     params.require(:client_key).permit(:requested,:used_at,:client_id,:key_id)
   end
+
+  def get_params
+    params.require(:client_key).permit(:client_id, :key_id)
+  end
+
 end

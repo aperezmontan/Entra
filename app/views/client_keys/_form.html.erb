@@ -1,0 +1,7 @@
+<%= form_for @client_key do |f| %>
+<%= f.label :client_id, "Select Guest" %>
+<%= f.collection_select(:client_id, clients, :id, :name)%></br>
+<%= f.label :key_id, "Select Place and Time" %>
+<%= f.collection_select(:key_id, Key.all, :id, :place_and_time)%></br>
+<%= f.submit %>
+<% end %>
