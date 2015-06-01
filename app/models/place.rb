@@ -2,6 +2,7 @@ class Place < ActiveRecord::Base
 
   belongs_to :admin, class_name: 'User'
   has_many :keys
+  has_many :logs, through: :keys
 
   def available_keys
     current_time = Time.now

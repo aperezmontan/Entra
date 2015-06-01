@@ -1,21 +1,20 @@
 Rails.application.routes.draw do
   resources :sessions, only: [:create]
-  resources :users, except: :index
-  resources :guests, except: [:index]
-  resources :places, except: [:index]
+  resources :users, except: [:index]
+  resources :guests, except: [:index, :show]
+  resources :places, except: [:index, :show]
   resources :keys, except: [:index]
-  resources :client_keys, only: [:new, :create, :update]
 
   get 'login'   => 'sessions#new'
   get 'logout'  => 'sessions#destroy'
   get 'signup'   => 'users#new'
   root 'sessions#new'
 
-  get 'place_key/:id' => "places#key"
-  get 'client_key/:client_key_id/status/:status' => "client_keys#used_at"
+  get 'place/:id/key' => "places#key"
+  get 'key/:id/status/:status' => "keys#used_at"
   get 'test/sms' => "twilio#send_text_message" # Should probably be a post
   post 'test/sms/reply' => "twilio#receive_text_message"
-  get 'request_open_show/:hash' => "client_keys#request_open_show"
+  get 'find_guests_key_by_url/:hash' => "keys#find_guests_key_by_url"
 
 
   get 'send_email' => "users#send_mail"
