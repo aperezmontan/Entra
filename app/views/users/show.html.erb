@@ -1,22 +1,24 @@
 <div class="container">
   <div class="row">
-    <div class="user_welcome"><h3>Hi <%= current_user.first_name %></h3><div>
     <div class="col-md-6">
+      <div class="user_welcome"><h3>Hi <%= current_user.first_name %></h3></div>
       #####<br>
       #####<br>
       #####<br>
 
     </div>
     <div class="col-md-6">
-      Hey
+      <h4>Upcoming Guests</h4>
     </div>
   </div>
 </div>
 
+<div id="form-drop-down" class="col-md-12 text-center"><hr></div>
+
 <div class="container">
   <div class="row">
     <div class="panel panel-default col-md-4">
-      <div class="panel-heading"><span class="text-left">Places</span><i class="fa fa-plus pull-right"></i></div>
+      <div class="panel-heading"><span class="text-left">Places</span><i id="add-place" class="fa fa-plus pull-right"></i></div>
       <div class="panel-body">
         <% if @user.places.count > 0 %>
           <%= render @user.places %>
@@ -26,7 +28,7 @@
       </div>
     </div>
     <div class="panel panel-default col-md-4">
-      <div class="panel-heading"><span class="text-left">Keys</span><i class="fa fa-plus pull-right"></i></div>
+      <div class="panel-heading"><span class="text-left">Keys</span><i id="add-key" class="fa fa-plus pull-right"></i></div>
       <div class="panel-body">
         <% if @user.places[0].keys.count > 0 %>
           <%= render @user.places[0].keys %>
@@ -36,7 +38,7 @@
       </div>
     </div>
     <div class="panel panel-default col-md-4">
-      <div class="panel-heading"><span class="text-left">Clients</span><i class="fa fa-plus pull-right"></i></div>
+      <div class="panel-heading"><span class="text-left">Guests</span><i id="add-client" class="fa fa-plus pull-right"></i></div>
       <div class="panel-body">
         <% if @user.clients.count > 0 %>
           <%= render @user.clients %>
