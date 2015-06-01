@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :sessions, only: [:create]
   resources :users, except: :index
-  resources :clients, except: [:index]
+  resources :guests, except: [:index]
   resources :places, except: [:index]
   resources :keys, except: [:index]
   resources :client_keys, only: [:new, :create, :update]

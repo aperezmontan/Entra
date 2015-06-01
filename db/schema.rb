@@ -16,56 +16,43 @@ ActiveRecord::Schema.define(version: 20150531211705) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "client_keys", force: :cascade do |t|
-    t.integer  "client_id",                        null: false
-    t.integer  "key_id",                           null: false
-    t.datetime "used_at"
-    t.boolean  "unlimited_access", default: false
-    t.boolean  "requested",        default: false
-    t.string   "hashify"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-  end
-
-  create_table "clients", force: :cascade do |t|
+  create_table "guests", force: :cascade do |t|
     t.string   "name",       null: false
     t.string   "phone",      null: false
-    t.integer  "user_id",    null: false
     t.string   "email",      null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "keys", force: :cascade do |t|
-    t.integer  "place_id",   null: false
-    t.datetime "start_date", null: false
-    t.datetime "end_date",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "place_id",                         null: false
+    t.datetime "start_date",                       null: false
+    t.datetime "end_date",                         null: false
+    t.integer  "guest_id",                         null: false
+    t.datetime "used_at"
+    t.string   "secret_url",                       null: false
+    t.boolean  "requested",        default: false, null: false
+    t.boolean  "unlimited_access", default: false, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer  "user_id",        null: false
-    t.integer  "client_keys_id", null: false
+    t.integer  "user_id",    null: false
+    t.integer  "key_id",     null: false
     t.string   "message"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "places", force: :cascade do |t|
-    t.text     "address",    null: false
-    t.string   "nick_name",  null: false
-    t.integer  "admin_id",   null: false
-    t.integer  "user_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "properties", force: :cascade do |t|
-    t.integer  "user_id",    null: false
-    t.integer  "place_id",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "address",                       null: false
+    t.string   "nickname",                      null: false
+    t.integer  "admin_id",                      null: false
+    t.boolean  "master_unlock", default: false, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "users", force: :cascade do |t|

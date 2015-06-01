@@ -9,10 +9,10 @@
 
     </div>
     <div class="col-md-6">
-        <% if @user.reservations.count > 0 %>
-          <%= render @user.reservations %>
+        <% if @user.keys.count > 0 %>
+          <%= render @user.keys %>
         <% else %>
-          <div>You don't have any reservations yet</div>
+          <div>You don't have any keys yet</div>
         <% end %>
     </div>
   </div>
@@ -36,27 +36,25 @@
       <div class="panel-heading"><span class="text-left">Keys</span><i id="add-key" class="fa fa-plus pull-right"></i></div>
       <div class="panel-body">
         <!-- VERY HACKY, MUST BE REPLACED !!!! -->
-        <% if @user.places.count > 0 %>
-          <% if @user.places[0].keys.count > 0 %>
-            <%= render @user.places[0].keys %>
-          <% end %>
+        <% if @user.keys.count > 0 %>
+          <%= render @user.keys %>
         <% else %>
           <div>You don't have any keys yet</div>
         <% end %>
       </div>
     </div>
     <div class="panel panel-default col-md-4">
-      <div class="panel-heading"><span class="text-left">Guests</span><i id="add-client" class="fa fa-plus pull-right"></i></div>
+      <div class="panel-heading"><span class="text-left">Guests</span><i id="add-guest" class="fa fa-plus pull-right"></i></div>
       <div class="panel-body">
-        <% if @user.clients.count > 0 %>
-          <%= render @user.clients %>
+        <% if @user.guests.count > 0 %>
+          <%= render @user.guests %>
         <% else %>
-          <div>You don't have any clients yet</div>
+          <div>You don't have any guests yet</div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
 
-<a href = "/client_keys/new">Make new client key</a>
+<a href = "/keys/new">Make new guest key</a>
 

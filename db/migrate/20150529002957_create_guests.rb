@@ -1,10 +1,10 @@
-class CreateClients < ActiveRecord::Migration
+class CreateGuests < ActiveRecord::Migration
   def change
-    create_table :clients do |t|
+    create_table :guests do |t|
       t.string :name, null: false
       t.string :phone, null: false
-      t.references :user, null: false
       t.string :email, null: false
+      t.references :user, null: false
 
       t.timestamps null: false
     end

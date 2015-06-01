@@ -1,4 +1,4 @@
-class ClientsController < ApplicationController
+class GuestsController < ApplicationController
   before_action :require_login, only: [:new, :create]
 
   def show
@@ -6,7 +6,7 @@ class ClientsController < ApplicationController
   end
 
   def new
-    @client = Client.new
+    @guest = Guest.new
     respond_to do |format|
       if request.xhr?
         format.html { render :new, layout: false}
@@ -17,13 +17,13 @@ class ClientsController < ApplicationController
   end
 
   def create
-    new_client = Client.new(get_params)
-    new_client.user_id  = current_user.id
-    if new_client.save
-      flash[:success] = "#{new_client.name} was saved"
+    new_guest = Guest.new(get_params)
+    new_guest.user_id  = current_user.id
+    if new_guest.save
+      flash[:success] = "#{new_guest.name} was saved"
       redirect_to user_path(current_user)
     else
-      flash[:error] = "This client could not be saved"
+      flash[:error] = "This guest could not be saved"
       redirect_to :back #ask about changing this
     end
   end
@@ -39,7 +39,7 @@ class ClientsController < ApplicationController
   private
 
   def get_params
-    params.require(:client).permit(:name, :phone, :email)
+    params.require(:guest).permit(:name, :phone, :email)
   end
 
 end

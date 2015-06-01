@@ -42,7 +42,7 @@ class KeysController < ApplicationController
   private
 
   def get_params
-    params.require(:key).permit(:place_id, :start_date, :end_date)
+    params.require(:key).permit(:place_id, :start_date, :guest_id, :end_date)
   end
 
 end

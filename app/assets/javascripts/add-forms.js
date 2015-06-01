@@ -1,6 +1,6 @@
 $(document).on('ready page:load', function(){
 
-  addForm('#add-client', 'clients');
+  addForm('#add-guest', 'guests');
   addForm('#add-key', 'keys');
   addForm('#add-place', 'places');
 

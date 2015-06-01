@@ -1,7 +1,9 @@
+require 'securerandom'
+
 class Key < ActiveRecord::Base
   belongs_to :place
-  has_many :client_keys
-  has_many :clients ,through: :client_keys
+  belongs_to :guest
+  before_create :set_secret_url
 
   def self.get_available_key keys
     keys.each do |key|
@@ -18,7 +20,13 @@ class Key < ActiveRecord::Base
   end
 
   def place_and_time
-    "#{self.place.nick_name} between #{self.start_date} and #{self.end_date}"
+    "#{self.place.nickname} between #{self.start_date} and #{self.end_date}"
+  end
+
+  private
+
+  def set_secret_url
+    self.secret_url = SecureRandom.urlsafe_base64
   end
 
 end

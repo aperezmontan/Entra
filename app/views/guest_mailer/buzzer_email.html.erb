@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @key.guest.name %></h1>
+    <p>You now have access to <%= @key.place.nickname %></p>
+    <p>Once you are at the buzzer follow this link to open : <%= link_to "Unlock #{@key.place.nickname}" , @url %>.</p>
+    <p>Enjoy your staying</p>
+  </body>
+</html>
