@@ -1,4 +1,4 @@
-class Client < ActiveRecord::Base
+class Guest < ActiveRecord::Base
   belongs_to :user
   has_many :keys
 

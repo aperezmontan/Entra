@@ -1,7 +1,6 @@
 class Key < ActiveRecord::Base
   belongs_to :place
-  has_many :client_keys
-  has_many :clients ,through: :client_keys
+  belongs_to :guest
 
   def self.get_available_key keys
     keys.each do |key|
