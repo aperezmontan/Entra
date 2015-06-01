@@ -1,7 +1,6 @@
 class PlacesController < ApplicationController
   before_action :require_login, only: [:new, :create]
 
-
   def show
 
   end
@@ -46,8 +45,9 @@ class PlacesController < ApplicationController
     end
     if client_key
       @response = { key: client_key.id, open: true}
+      @response = { key: client_key.client_id, open: true } if client_key.client_id == 0
     else
-      @response = { open: false}
+      @response = { open: false }
     end
     render :json => @response
   end
