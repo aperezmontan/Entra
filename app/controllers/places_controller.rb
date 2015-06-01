@@ -8,6 +8,13 @@ class PlacesController < ApplicationController
 
   def new
     @place = Place.new
+    respond_to do |format|
+      if request.xhr?
+        format.html { render :new, layout: false}
+      else
+        format.html { render :new }
+      end
+    end
   end
 
   def create
@@ -33,13 +40,13 @@ class PlacesController < ApplicationController
 
   def key
     place = Place.find_by(id: params[:id])
-    if place 
+    if place
       keys = place.available_keys
       client_key = Key.get_available_key(keys)
     end
     if client_key
       @response = { key: client_key.id, open: true}
-    else 
+    else
       @response = { open: false}
     end
     render :json => @response

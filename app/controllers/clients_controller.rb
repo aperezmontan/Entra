@@ -7,6 +7,13 @@ class ClientsController < ApplicationController
 
   def new
     @client = Client.new
+    respond_to do |format|
+      if request.xhr?
+        format.html { render :new, layout: false}
+      else
+        format.html { render :new }
+      end
+    end
   end
 
   def create
