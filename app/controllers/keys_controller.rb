@@ -21,7 +21,8 @@ class KeysController < ApplicationController
     if new_key.save
       send_mail new_key
       flash[:success] = "New key created"
-      redirect_to user_path(current_user)
+      # redirect_to user_path(current_user)
+      render :json => new_key
     else
       flash[:error] = "Key could not be created :("
       redirect_to user_path(current_user)
@@ -63,7 +64,7 @@ class KeysController < ApplicationController
   end
 
   def send_mail key
-    ClientMailer.buzzer_email(base_url, key, current_user).deliver_now
+    # GuestMailer.buzzer_email(base_url, key, current_user).deliver_now
   end
 
   def get_key

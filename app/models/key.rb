@@ -4,17 +4,7 @@ class Key < ActiveRecord::Base
   has_many :logs
   belongs_to :place
   belongs_to :guest
-  before_create :set_secret_url
-
-  def self.get_available_key keys
-    keys.each do |key|
-      client_key = key.client_keys.find_by(requested: true, used_at: nil)
-      master_key = key.client_keys.find_by(requested: true, unlimited_access: true)
-      return client_key if client_key
-      return master_key if master_key
-    end
-    nil
-  end
+  before_create :prepare_for_create
 
   def cleaner_time(start_or_end)
     self.send(start_or_end).getlocal.strftime("%I:%M %p %a %b %e, %Y")
@@ -42,14 +32,24 @@ class Key < ActiveRecord::Base
   end
 
   def is_available?
-    current_time = Time.now.in_time_zone("Eastern Time (US & Canada)")
-    key.start_date <= current_time && key.end_date >= current_time && !used_at
+    current_time = Time.now
+    start_date <= current_time && end_date >= current_time && !used_at
   end
 
   private
 
+  def prepare_for_create
+    set_secret_url
+    convert_times_to_utc
+  end
+
   def set_secret_url
     self.secret_url = SecureRandom.urlsafe_base64
+  end
+
+  def convert_times_to_utc
+    self.start_date = Time.zone.parse(start_date.to_s).utc + 4.hours
+    self.end_date = Time.zone.parse(end_date.to_s).utc + 4.hours
   end
 
   def time_until(time_stamp)
