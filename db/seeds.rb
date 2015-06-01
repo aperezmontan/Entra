@@ -14,5 +14,5 @@ place = Place.create(address:'Juan Dolio', nickname:'Beach House',admin_id:ari.i
 guest = Guest.create(name:'Luis', phone:'8098541988',user_id:ari.id,email:'echenique11@hotmail.com')
 key = Key.create(place_id:place.id,start_date:Time.now,end_date:Date.parse('11-11-2020'),guest_id: guest.id)
 
-ari.deafult_place = place
+ari.default_place = place
 ari.save

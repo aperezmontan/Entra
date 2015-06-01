@@ -11,8 +11,4 @@ class Place < ActiveRecord::Base
     all_keys
   end
 
-  def default
-    current_user.places.where(default_place: true)
-  end
-
 end
