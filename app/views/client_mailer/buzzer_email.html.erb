@@ -4,9 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi <%= @client.name %></h1>
-    <p>You now have access to @Place</p>
-    <p>Once you are at the buzzer follow this link to open : <%= link_to "Unlock @Place" , @url %>.</p>
+    <h1>Hi <%= @clientKey.client.name %></h1>
+    <p>You now have access to <%= @clientKey.key.place.nick_name %></p>
+    <p>Once you are at the buzzer follow this link to open : <%= link_to "Unlock #{@clientKey.key.place.nick_name}" , @url %>.</p>
     <p>Enjoy your staying</p>
   </body>
 </html>

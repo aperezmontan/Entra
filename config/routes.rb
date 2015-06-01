@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'request_open_show/:hash' => "client_keys#request_open_show"
 
 
-  post 'send_email' => "users#send_mail"
+  get 'send_email' => "users#send_mail"
 
 
 
