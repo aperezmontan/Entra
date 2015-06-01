@@ -21,4 +21,5 @@ class ClientKeysController < ApplicationController
   def request_open_show
     @clientKey = ClientKey.find_by(hashify: params[:hash])
   end
+
 end
