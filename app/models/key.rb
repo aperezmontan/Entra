@@ -20,7 +20,7 @@ class Key < ActiveRecord::Base
   end
 
   def place_and_time
-    "#{self.place.nick_name} between #{self.start_date} and #{self.end_date}"
+    "#{self.place.nickname} between #{self.start_date} and #{self.end_date}"
   end
 
   private

@@ -1,7 +1,6 @@
 class Place < ActiveRecord::Base
 
-  has_one :user, foreign_key: :admin_id
-  has_many :users
+  belongs_to :admin, class_name: 'User'
   has_many :keys
 
   def available_keys

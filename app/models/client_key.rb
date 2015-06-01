@@ -48,11 +48,11 @@ class ClientKey < ActiveRecord::Base
     client = Client.find_by(id: self.client_id)
     time = time_until(key.start_date)
     if Time.now.utc > key.end_date
-      "#{client.name} had access to #{key.place.nick_name}"
+      "#{client.name} had access to #{key.place.nickname}"
     elsif Time.now.utc > key.start_date && Time.now.utc < key.end_date
-      "#{client.name} currently has access to #{key.place.nick_name}"
+      "#{client.name} currently has access to #{key.place.nickname}"
     else
-    "#{client.name} will have access to #{key.place.nick_name} in #{time}"
+    "#{client.name} will have access to #{key.place.nickname} in #{time}"
     end
   end
 

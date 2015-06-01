@@ -26,15 +26,16 @@ ActiveRecord::Schema.define(version: 20150531211705) do
   end
 
   create_table "keys", force: :cascade do |t|
-    t.integer  "place_id",                   null: false
-    t.datetime "start_date",                 null: false
-    t.datetime "end_date",                   null: false
-    t.integer  "guest_id",                   null: false
+    t.integer  "place_id",                         null: false
+    t.datetime "start_date",                       null: false
+    t.datetime "end_date",                         null: false
+    t.integer  "guest_id",                         null: false
     t.datetime "used_at"
-    t.boolean  "requested",  default: false, null: false
-    t.string   "secret_url",                 null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "secret_url",                       null: false
+    t.boolean  "requested",        default: false, null: false
+    t.boolean  "unlimited_access", default: false, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "notifications", force: :cascade do |t|

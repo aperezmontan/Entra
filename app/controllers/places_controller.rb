@@ -18,10 +18,9 @@ class PlacesController < ApplicationController
 
   def create
     new_place = Place.new(get_params)
-    new_place.user_id  = current_user.id
     new_place.admin_id = current_user.id
     if new_place.save
-      flash[:success] = "#{new_place.nick_name} was saved"
+      flash[:success] = "#{new_place.nickname} was saved"
       redirect_to user_path(current_user)
     else
       flash[:error] = "This place could not be saved"
@@ -55,7 +54,7 @@ class PlacesController < ApplicationController
   private
 
   def get_params
-    params.require(:place).permit(:nick_name, :address)
+    params.require(:place).permit(:nickname, :address)
   end
 
 end

@@ -6,8 +6,9 @@ class CreateKeys < ActiveRecord::Migration
       t.datetime :end_date, null: false
       t.references :guest, null: false
       t.datetime :used_at
-      t.boolean :requested, default: false, null: false
       t.string :secret_url, null: false
+      t.boolean :requested, default: false, null: false
+      t.boolean :unlimited_access, default: false, null: false
 
       t.timestamps null: false
     end
