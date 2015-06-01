@@ -2,8 +2,11 @@ class ClientKeysController < ApplicationController
 
 
   def update
-    @client_key = ClientKey.find_by(client_id: params[:id])
-    @client_key.update_attributes(requested: true)
+    clientKey = ClientKey.find_by(id: params[:id])
+    clientKey.update_attributes(client_key_params)
+    if !clientKey.save
+      flash[:warning] = "Couldn't open."
+    end
     redirect_to :back
   end
 
@@ -20,5 +23,11 @@ class ClientKeysController < ApplicationController
 
   def request_open_show
     @clientKey = ClientKey.find_by(hashify: params[:hash])
+  end
+
+  private 
+
+  def client_key_params
+    params.require(:client_key).permit(:requested,:used_at,:client_id,:key_id)
   end
 end
