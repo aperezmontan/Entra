@@ -16,4 +16,9 @@ class Key < ActiveRecord::Base
   def cleaner_time(start_or_end)
     self.send(start_or_end).strftime("%I:%M %p %a %b %e, %Y")
   end
+
+  def place_and_time
+    "#{self.place.nick_name} between #{self.start_date} and #{self.end_date}"
+  end
+
 end

@@ -1,9 +1,7 @@
-<%= form_for @clientkey do |f| %>
-<%= f.label :place_id, "Select Place" %>
-<%= f.collection_select(:place_id, places, :id, :nick_name)%></br>
-<%= f.label :start_date, "Select Start Time" %>
-<%= f.datetime_select :start_date, :ampm => true, :order => [:month, :day, :year, :hour], :date_separator => "", :discard_minute => true%></br>
-<%= f.label :end_date, "Select End Time" %>
-<%= f.datetime_select :end_date, :ampm => true, :order => [:month, :day, :year, :hour], :date_separator => "", :discard_minute => true%></br>
-<%=  f.submit %>
+<%= form_for @client_key do |f| %>
+<%= f.label :client_id, "Select Guest" %>
+<%= f.collection_select(:client_id, clients, :id, :name)%></br>
+<%= f.label :key_id, "Select Place and Time" %>
+<%= f.collection_select(:key_id, Key.all, :id, :place_and_time)%></br>
+<%= f.submit %>
 <% end %>
