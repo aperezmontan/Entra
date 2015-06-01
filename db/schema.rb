@@ -39,11 +39,14 @@ ActiveRecord::Schema.define(version: 20150601195728) do
   end
 
   create_table "logs", force: :cascade do |t|
-    t.integer  "key_id",     null: false
-    t.text     "messages",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "message",       null: false
+    t.integer  "loggable_id"
+    t.string   "loggable_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
+
+  add_index "logs", ["loggable_type", "loggable_id"], name: "index_logs_on_loggable_type_and_loggable_id", using: :btree
 
   create_table "notifications", force: :cascade do |t|
     t.integer  "user_id",    null: false
