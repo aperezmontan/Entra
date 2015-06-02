@@ -85,12 +85,20 @@ class Log < ActiveRecord::Base
 
   ###################THIS WILL BE FOR ADMIN USE################################
 
-  def admin_open_request_success(place) #when the admin user makes a request successfully
+  def admin_open_request_success(place) #when the admin user makes an open request successfully
     self.message = "SUCCESS ! You requested to open -> #{place.nickname}"
   end
 
-  def admin_open_request_fail(place) #when the admin user makes a request unsuccessfully
+  def admin_open_request_fail(place) #when the admin user makes an open request unsuccessfully
    self.message = "FAILURE :( You unsuccessfully requested to open -> #{place.nickname}"
+  end
+
+  def admin_close_request_success(place) #when the admin user makes an close request successfully
+    self.message = "SUCCESS ! You requested to close -> #{place.nickname}"
+  end
+
+  def admin_close_request_fail(place) #when the admin user makes an close request unsuccessfully
+   self.message = "FAILURE :( You unsuccessfully requested to close -> #{place.nickname}"
   end
 
   def opened_successfully_message(place) #when the door for an admin user opens successfully
@@ -104,11 +112,11 @@ class Log < ActiveRecord::Base
   ####################################NEED TO FIGURE OUT HOW TO DO THESE.  TIMER?#################
 
   def opened_unsuccessfully_message(place) #when the door for an admin user fails to open
-   self.message = "FAILURE :( #{place.nickname} could not be opened for -> You"
+   self.message = "FAILURE :( Seems like #{place.nickname} could not be opened for -> You"
   end
 
   def closed_unsuccessfully_message(place) #when the door for an admin user fails to close
-   self.message = "FAILURE :( #{place.nickname} could not be closed for -> You"
+   self.message = "FAILURE :( Seems like #{place.nickname} could not be closed for -> You"
   end
 
   ##############################################
