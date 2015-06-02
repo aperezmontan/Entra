@@ -14,12 +14,15 @@ $(document).on('ready page:load', function(){
 
 var addForm = function(selector, type) {
   $(selector).on('click', function(event){
+    data = $(event.target).data();
 
     $.ajax({
       method: 'GET',
-      url: '/'+ type +'/new'
+      url: '/'+ type +'/new',
+      data: data
     })
     .done(function ( response ) {
+      console.log(data);
       response = response + dropDownFooter;
       $('#form-drop-down').append(response);
     })
