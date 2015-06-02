@@ -16,14 +16,14 @@
       <% end %>
 
     <% else %>
-    
-      <p>Your key will be available in : </p>
-      <div id="available-in"></div>
-      <%= javascript_tag do %>
-        var startDate = <%= raw @key.get_start_date_string.to_json%>;
-        availableIn(startDate);
-      <% end %>
-
+      <div id='lock-container'>
+        <p>Your key will be available in : </p>
+        <div id="available-in"></div>
+        <%= javascript_tag do %>
+          var startDate = <%= raw @key.get_start_date_string.to_json%>;
+          availableIn(startDate);
+        <% end %>
+      </div>
     <% end %>
   </div>
 <% end %>
