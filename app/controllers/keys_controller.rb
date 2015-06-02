@@ -34,17 +34,13 @@ class KeysController < ApplicationController
 
   def update
     key = Key.find_by(id: params[:id])
-    if key.update_attributes(get_params)
-      flash[:success] = "Key has been updated!"
-    else
-      flash[:error] = "Key could not be updated :("
-    end
-    redirect_to :back
+    key.assign_attributes(get_params)
+    render json: {updated: key.save} 
   end
 
   def used_at
-    @key.used_at = Time.now if (params[:status] == 'opened')
-    @key.save
+    key.used_at = Time.now if (params[:status] == 'opened')
+    key.save
     render :json => params
   end
 
