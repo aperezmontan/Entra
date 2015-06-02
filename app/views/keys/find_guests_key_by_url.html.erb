@@ -1,5 +1,5 @@
-<div id='guest-container'>
-<% if @key.unlimited_access %> 
+<div id='guest-container' class='container-fluid text-center'>
+<% if @key.unlimited_access %>
  <%= render partial: 'places/giant_lock', locals: { name: @key.guest.name, id: @key.id, place_name: @key.place.nickname, tag: 'key'} %>
 <% elsif @key.used_at %>
   <div id="notification-center">
@@ -7,13 +7,14 @@
     <%= render 'keys/notifications' %>
   </div>
 <% else %>
-  <div id="open-container">
+  <div id="open-container" class='col-md-7 col-centered'>
     <% if @key.is_available? %>
 
       <% if !@key.requested %>
         <%= render partial: 'places/giant_lock', locals: { name: @key.guest.name, id: @key.id, place_name: @key.place.nickname, tag: 'key'} %>
       <% else %>
-          <p>Please wait until the buzzer open the door for you, if it doesn't :</p>
+          <p>Please wait until the buzzer open the door for you.</p>
+          <p>If it doesn't :</p>
           <%= render 'keys/notifications' %>
       <% end %>
 
@@ -30,7 +31,7 @@
           <p>Your key has expired, notify <%= @key.guest.name %></p>
           <%= render 'keys/notifications' %>
       <% end %>
-      
+
     <% end %>
   </div>
 <% end %>

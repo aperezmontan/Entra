@@ -4,7 +4,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="panel panel-default col-md-4">
+    <div class="panel panel-default col-md-6">
       <div class="panel-heading"><span class="text-left">Logs</span><i id="add-place" class="fa fa-plus pull-right"></i></div>
       <div class="panel-body">
         <% if @user.places.count > 0 %>
@@ -14,25 +14,15 @@
         <% end %>
       </div>
     </div>
-    <div class="panel panel-default col-md-4">
+    <div class="panel panel-default col-md-6">
       <div class="panel-heading"><span class="text-left">Keys</span><i id="add-key" data-place-id='<%=@place.id%>' class="fa fa-plus pull-right"></i></div>
-      <div class="panel-body">
-        <% if @user.keys.count > 0 %>
-          <%= render @user.keys %>
-        <% else %>
-          <div>You don't have any keys yet</div>
-        <% end %>
-      </div>
-    </div>
-    <div class="panel panel-default col-md-4">
-      <div class="panel-heading"><span class="text-left">Guests</span><i id="add-guest" class="fa fa-plus pull-right"></i></div>
-      <div class="panel-body">
-        <% if @user.guests.count > 0 %>
-          <%= render @user.guests %>
-        <% else %>
-          <div>You don't have any guests yet</div>
-        <% end %>
-      </div>
+      <% if @user.keys.count > 0 %>
+        <ul class="list-group">
+        <%= render @user.keys %>
+        </ul>
+      <% else %>
+        <div>You don't have any keys yet</div>
+      <% end %>
     </div>
   </div>
 </div>

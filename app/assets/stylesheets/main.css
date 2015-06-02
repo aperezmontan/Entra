@@ -12,9 +12,7 @@
 }
 
 .individual-item {
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  outline: none;
 }
 
 #giant-lock {
@@ -54,4 +52,14 @@ footer {
 #guest-container{
   width:90%;
   margin:auto;
+}
+
+.form-control, .input-group-addon {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
