@@ -47,8 +47,13 @@
         <% end %>
       </div>
       <%else%>
+        <% current_user.places.each do |place| %>
+          <li><%= link_to place.nickname, place_path(place) %></li>
+        <% end %>
         <li>
-          <%= link_to "Sign out", logout_path, class:"btn btn-default btn-circle"%>
+          <%= link_to logout_path do %>
+            Sign Out <i class="fa fa-sign-out"></i>
+          <% end %>
         </li>
       </ul>
       <% end %>

@@ -16,3 +16,25 @@
   border-left: none;
   border-right: none;
 }
+
+#giant-lock {
+  font-size: 10em;
+}
+
+#giant-lock:hover {
+  color: rgba(10,100,15, 0.4);
+}
+
+#giant-lock-opened {
+  font-size: 10em;
+  color: rgba(100, 10, 15, 0.4);
+}
+
+#lock-container {
+  padding: 15px;
+}
+
+#unlock-message-container {
+  height: 10px;
+  margin-bottom: 10px;
+}

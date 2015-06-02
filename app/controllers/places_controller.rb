@@ -1,5 +1,5 @@
 class PlacesController < ApplicationController
-  before_action :require_login, only: [:new, :create]
+  before_action :require_login, only: [:new, :create, :update]
   before_action :get_place, only: [:show, :update, :delete, :key]
   before_action :get_user, only: [:show, :create]
 
@@ -30,7 +30,8 @@ class PlacesController < ApplicationController
   end
 
   def update
-
+    @place.assign_attributes(master_unlock: true)
+    render json: {updated: @place.save}
   end
 
   def delete
