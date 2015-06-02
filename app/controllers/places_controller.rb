@@ -31,7 +31,19 @@ class PlacesController < ApplicationController
 
   def update
     @place.assign_attributes(master_unlock: params.has_key?(:o))
-    render json: {updated: @place.save}
+    new_log = Log.new(loggable_type: "Place", loggable_id: @place.id)
+    saved = @place.save
+    if saved && @place.master_unlock
+      new_log.admin_open_request_success(@place)
+    elsif saved && (@place.master_unlock == false)
+      new_log.admin_close_request_success(@place)
+    elsif !saved && @place.master_unlock
+      new_log.admin_open_request_fail(@place)
+    else
+      new_log.admin_close_request_fail(@place)
+    end
+    new_log.save
+    render json: {updated: saved}
   end
 
   def delete
