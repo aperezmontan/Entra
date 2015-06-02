@@ -28,7 +28,8 @@ class Key < ActiveRecord::Base
   end
 
   def get_start_date_string
-    start_date.strftime("%Y/%m/%d %H:%M:%S")
+    sd = start_date - 4.hours
+    sd.strftime("%Y/%m/%d %H:%M:%S")
   end
 
   def is_available?

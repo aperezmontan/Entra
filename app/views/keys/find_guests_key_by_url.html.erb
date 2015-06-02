@@ -26,12 +26,12 @@
             <%= submit_tag "Notify",class: 'notify-btn' %>
           <% end %>
       <% end %>
-
     <% else %>
-
+      <p>Your key will be available in : </p>
       <div id="available-in"></div>
       <%= javascript_tag do %>
         var startDate = <%= raw @key.get_start_date_string.to_json%>;
+        console.log(startDate);
         availableIn(startDate);
       <% end %>
 

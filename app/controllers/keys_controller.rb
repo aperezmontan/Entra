@@ -53,17 +53,17 @@ class KeysController < ApplicationController
   end
 
   def find_guests_key_by_url
-    @key = Key.find_by(secret_url: params[:secret_url])
+    @key = Key.find_by(secret_url: params[:hash])
   end
 
   private
 
   def get_params
-    params.require(:key).permit(:place_id, :start_date, :guest_id, :end_date)
+    params.require(:key).permit(:place_id, :start_date, :guest_id, :end_date,:requested)
   end
 
   def send_mail key
-    # GuestMailer.buzzer_email(base_url, key, current_user).deliver_now
+    GuestMailer.buzzer_email(base_url, key, current_user).deliver_now
   end
 
   def get_key
