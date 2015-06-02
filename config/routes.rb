@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get 'place/:id/key' => "places#key"
   get 'key/:id/status/:status' => "keys#used_at"
-  get 'place/:id/master/:status' => "place#update_master"
+  get 'place/:id/master/:status' => "places#update_master"
   get 'test/sms' => "twilio#send_text_message" # Should probably be a post
   post 'test/sms/reply' => "twilio#receive_text_message"
   get 'find_guests_key_by_url/:hash' => "keys#find_guests_key_by_url"
