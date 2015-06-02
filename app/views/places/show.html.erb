@@ -12,9 +12,9 @@
 
 <div class="container">
   <div class="row">
-    <div class="panel panel-default col-md-6">
-      <div class="panel-heading"><span class="text-left">Logs</span></div>
-      <div class="panel-body">
+    <div class="panel panel-default col-md-4">
+      <div class="panel-heading"><span class="text-left">Activity</span><i id="add-place" class="fa fa-plus pull-right"></i></div>
+      <div id="activityList" class="panel-body">
         <% if @place.logs.count > 0 %>
           <%= render @place.logs.order(created_at: :desc) %>
         <% else %>
