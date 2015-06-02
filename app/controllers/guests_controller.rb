@@ -21,7 +21,7 @@ class GuestsController < ApplicationController
     new_guest.user_id  = current_user.id
     if new_guest.save
       flash[:success] = "#{new_guest.name} was saved"
-      redirect_to user_path(current_user)
+      redirect_to place_path(current_user)
     else
       flash[:error] = "This guest could not be saved"
       redirect_to :back #ask about changing this
