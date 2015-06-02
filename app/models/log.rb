@@ -6,7 +6,7 @@ class Log < ActiveRecord::Base
   end
 
   def new_key_fail_message(key)
-   message = "FAILURE :( You could not creat a new key for #{key.guest.name} at #{key.place.nickname}"
+   message = "FAILURE :( You could not create a new key for #{key.guest.name} at #{key.place.nickname}"
   end
 
   def destroy_key_success_message(key)
