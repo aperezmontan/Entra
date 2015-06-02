@@ -1,6 +1,8 @@
 <%= form_tag notifications_path do %>
   <%= hidden_field_tag :user_id, @key.place.admin_id %>
   <%= hidden_field_tag :key_id, @key.id %>
-  <%= text_area_tag :message %>
-  <%= submit_tag "Notify",class: 'notifyBtn' %>
+  <div class="input-group input-group-lg margin-bottom-10">
+    <%= text_area_tag :message, nil, cols: 50, class: 'form-control notification-text' %>
+  </div>
+  <%= submit_tag "Notify",class: 'btn btn-default' %>
 <% end %>

@@ -37,6 +37,10 @@ class Key < ActiveRecord::Base
     start_date <= current_time && end_date >= current_time && !used_at
   end
 
+  def has_expired?
+    end_date > Time.now
+  end
+
   private
 
   def prepare_for_create

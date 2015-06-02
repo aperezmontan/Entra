@@ -1,16 +1,4 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <h4>Hi <%= @user.first_name %></h4>
-      <div id='lock-container' class='container-fluid'>
-        <i id='giant-lock' class="fa fa-lock" data-place-id='<%= @place.id %>'></i>
-      </div>
-      <div class='container-fluid' id="unlock-message-container">
-        <h5 id="unlock-message">Click the lock to unlock your <%= @place.nickname %></h5>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render partial: 'giant_lock', locals: { name: @user.first_name, id: @place.id, place_name: @place.nickname, tag: 'place'} %>
 
 <div id="form-drop-down" class="col-md-12 text-center"><hr></div>
 

@@ -42,3 +42,12 @@
 footer {
   padding: 10px;
 }
+
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
+#guest-container{
+  width:90%;
+  margin:auto;
+}
