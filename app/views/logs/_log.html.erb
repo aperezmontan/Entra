@@ -1,5 +1,5 @@
 <% if log.message.include?("SUCCESS") %>
-  <i class="fa fa-check"></i><%= log.message[9..(log.message.length)] + " #{log.time} ago"%></br>
+  <i class="fa fa-check"></i><span data-log-time="<%=log.created_at%>"><%= log.message[9..(log.message.length)] %><span class='timestamp'> <%=log.time%></span> ago</span></br>
 <% else %>
-  <i class="fa fa-times"></i><%= log.message[10..(log.message.length)] + " #{log.time} ago"%></br>
+  <i class="fa fa-times"></i><span data-log-time="<%=log.created_at%>"><%= log.message[10..(log.message.length)]%><span class='timestamp'> <%=log.time%></span> ago</span></br>
 <% end %>
