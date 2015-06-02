@@ -1,1 +1,5 @@
-<%= log.message %>
+<% if log.message.include?("SUCCESS") %>
+  <i class="fa fa-check"></i><%= log.message[9..(log.message.length)]%></br>
+<% else %>
+  <i class="fa fa-times"></i><%= log.message[10..(log.message.length)]%></br>
+<% end %>
