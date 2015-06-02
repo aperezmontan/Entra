@@ -1,12 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h4>Hi <%= @key.guest.name %></h4>
+      <div id='lock-container' class='container-fluid'>
+        <i id='giant-lock' class="fa fa-lock" data-place-id='<%= @key.id %>'></i>
+      </div>
+      <div class='container-fluid' id="unlock-message-container">
+        <h5 id="unlock-message">Click the lock to unlock <%= @key.place.nickname %></h5>
+      </div>
+    </div>
+  </div>
+</div>
+
 <% if @key.used_at %>
   <div id="notification-center">
     <p>This key has been already used. Please notify <%= @key.guest.user.first_name %></p>
-    <%= form_tag notifications_path do %>
-      <%= hidden_field_tag :user_id, @key.place.admin_id %>
-      <%= hidden_field_tag :key_id, @key.id %>
-      <%= text_area_tag :message %>
-      <%= submit_tag "Notify",class: 'notifyBtn' %>
-    <% end %>
+    <%= render 'keys/notifications' %>
   </div>
 <% else %>
   <div id="open-container">
@@ -19,12 +28,7 @@
         <% end %>
       <% else %>
           <p>Please wait until the buzzer open the door for you, if it doesn't :</p>
-          <%= form_tag notifications_path do %>
-            <%= hidden_field_tag :user_id, @key.guest.user.id %>
-            <%= hidden_field_tag :key_id, @key.id %>
-            <%= text_area_tag :message %>
-            <%= submit_tag "Notify",class: 'notify-btn' %>
-          <% end %>
+          <%= render 'keys/notifications' %>
       <% end %>
     <% else %>
       <p>Your key will be available in : </p>
