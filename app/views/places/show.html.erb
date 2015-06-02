@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="panel panel-default col-md-4">
-      <div class="panel-heading"><span class="text-left">Keys</span><i id="add-key" class="fa fa-plus pull-right"></i></div>
+      <div class="panel-heading"><span class="text-left">Keys</span><i id="add-key" data-place-id='<%=@place.id%>' class="fa fa-plus pull-right"></i></div>
       <div class="panel-body">
         <% if @user.keys.count > 0 %>
           <%= render @user.keys %>

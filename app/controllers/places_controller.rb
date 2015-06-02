@@ -30,7 +30,7 @@ class PlacesController < ApplicationController
   end
 
   def update
-    @place.assign_attributes(master_unlock: true)
+    @place.assign_attributes(master_unlock: params.has_key?(:o))
     render json: {updated: @place.save}
   end
 
@@ -41,10 +41,10 @@ class PlacesController < ApplicationController
   def key
     place = Place.find_by(id: params[:id])
     if place.master_unlock
-      @response = { master: true, open: true}      
+      @response = { master: true, open: true}
     elsif place.available_key
       key = place.available_key
-      @response = { key: key.id, open: true}      
+      @response = { key: key.id, open: true}
     else
       @response = { open: false }
     end

@@ -9,34 +9,41 @@ $(document).on('ready page:load', function(){
   })
 
 
-
   $('#giant-lock').on('click', function(event){
 
-    $(event.target).attr('class', 'fa fa-unlock-alt');
-    $(event.target).attr('id', 'giant-lock-opened');
+    place_url = '/places/' + $(event.target).data('place-id')
     $.ajax({
       method: 'PUT',
-      url: '/places/' + $(event.target).data('place-id')
+      url: place_url + '?o=t'
     })
     .done(function ( response ) {
       console.log(response)
+        $(event.target).attr('class', 'fa fa-unlock-alt');
+        $(event.target).attr('id', 'giant-lock-opened');
       setTimeout(function(){
         $(event.target).attr('class', 'fa fa-lock')
         $(event.target).attr('id', 'giant-lock')
-      }, 3000);
+        ensureFalse();
+      }, 4000);
     })
     .fail(function(jqXHR,textStatus){
-      /* code ... */
+      ensureFalse();
     })
-    .always(function(jqXHR,textStatus){
-      /* code ... */
+    .always(function(response){
     });
 
   })
 
-
-
-
-
-
 })
+
+
+
+var ensureFalse = function(){
+  $.ajax({
+    method: 'PUT',
+    url: place_url
+  })
+  .done(function ( response ) {
+    console.log(response)
+  })
+};
