@@ -1,3 +1,5 @@
+include ActionView::Helpers::DateHelper
+
 class Log < ActiveRecord::Base
   belongs_to :loggable
 
@@ -57,29 +59,59 @@ class Log < ActiveRecord::Base
    self.message = "FAILURE :( #{guest.name} send you a notification"
   end
 
-  def requested_open_successfully_message(key)
-   self.message = "SUCCESS ! #{key.guest.name} successfully requested to open #{key.place.nickname}"
+  def requested_open_successfully_message(key) #when someone makes a request with a valid key
+    self.message = "SUCCESS ! #{key.guest.name} requested to open -> #{key.place.nickname}"
   end
 
-  def requested_open_unsuccessfully_message(key)
-   self.message = "FAILURE :( #{key.guest.name} unsuccessfully requested to open #{key.place.nickname}"
+  def requested_open_unsuccessfully_message(key) #when someone makes a request with an invalid key
+   self.message = "FAILURE :( #{key.guest.name} unsuccessfully requested to open -> #{key.place.nickname}"
   end
 
-  def key_used_successfully_message(key)
-   self.message = "SUCCESS ! #{key.guest.name} successfully used a key for #{key.place.nickname}"
+  def opened_successfully_message(key) #when the door opens successfully
+    self.message = "SUCCESS ! #{key.place.nickname} opened by -> #{key.guest.name}"
   end
 
-  def key_used_unsuccessfully_message(key)
-   self.message = "FAILURE :( #{key.guest.name} tried unsuccessfully to use a key for #{key.place.nickname}"
+  def opened_unsuccessfully_message(key) #when door fails to open
+   self.message = "FAILURE :( #{key.place.nickname} could not be opened by -> #{key.guest.name}"
   end
 
-  def admin_use_success(place)
-   self.message = "SUCCESS ! You used a key for #{place.nickname}"
+  def closed_successfully_message(key) #when the door closes successfully
+    self.message = "SUCCESS ! #{key.place.nickname} opened by -> #{key.guest.name}"
   end
 
-  def admin_use_fail(place)
-   self.message = "FAILURE :( You used a key for #{place.nickname}"
+  def closed_unsuccessfully_message(key) #when door fails to close
+   self.message = "FAILURE :( #{key.place.nickname} could not be opened by -> #{key.guest.name}"
   end
+
+  ###################THIS WILL BE FOR ADMIN USE################################
+
+  def admin_open_request_success(place) #when the admin user makes a request successfully
+    self.message = "SUCCESS ! You requested to open -> #{place.nickname}"
+  end
+
+  def admin_open_request_fail(place) #when the admin user makes a request unsuccessfully
+   self.message = "FAILURE :( You unsuccessfully requested to open -> #{place.nickname}"
+  end
+
+  def opened_successfully_message(place) #when the door for an admin user opens successfully
+    self.message = "SUCCESS ! #{place.nickname} opened for -> You"
+  end
+
+  def closed_successfully_message(place) #when the door for an admin user closes successfully
+    self.message = "SUCCESS ! #{place.nickname} closed for -> You"
+  end
+
+  ####################################NEED TO FIGURE OUT HOW TO DO THESE.  TIMER?#################
+
+  def opened_unsuccessfully_message(place) #when the door for an admin user fails to open
+   self.message = "FAILURE :( #{place.nickname} could not be opened for -> You"
+  end
+
+  def closed_unsuccessfully_message(place) #when the door for an admin user fails to close
+   self.message = "FAILURE :( #{place.nickname} could not be closed for -> You"
+  end
+
+  ##############################################
 
   def time
     distance_of_time_in_words(self.created_at, Time.now)

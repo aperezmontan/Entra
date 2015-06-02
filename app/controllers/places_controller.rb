@@ -67,6 +67,13 @@ class PlacesController < ApplicationController
     place = Place.find_by(id: params[:id])
     place.master_unlock = false
     place.save
+    new_log = place.logs.build()
+    if params[:status] == "opened"
+      new_log.opened_successfully_message(place)
+    else
+      new_log.closed_successfully_message(place)
+    end
+    new_log.save
     render :json => params
   end
 
