@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+anonymous_guest = Guest.create(name:'Anonymous Guest', phone:'none', user_id:0, email:'entra.app+anonymous@gmail.com')
+
 ari = User.new(first_name: "Ari", last_name: "Perez", email: "ari@me.com", password: "12345")
 
 ari.save
