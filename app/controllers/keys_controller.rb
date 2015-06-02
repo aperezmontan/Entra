@@ -5,16 +5,16 @@ class KeysController < ApplicationController
 
   end
 
-  def new
-    @key = Key.new
-    respond_to do |format|
-      if request.xhr?
-        format.html { render :new, layout: false}
-      else
-        format.html { render :new }
-      end
-    end
-  end
+  # def new
+  #   @key = Key.new
+  #   respond_to do |format|
+  #     if request.xhr?
+  #       format.html { render :new, layout: false}
+  #     else
+  #       format.html { render :new }
+  #     end
+  #   end
+  # end
 
   def create
     @key = Key.new
