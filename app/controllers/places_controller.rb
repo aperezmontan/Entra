@@ -18,11 +18,11 @@ class PlacesController < ApplicationController
   end
 
   def create
-    new_place = Place.new(get_params)
-    new_place.admin_id = @user.id
-    if new_place.save
+    @place = Place.new(get_params)
+    @place.admin_id = @user.id
+    if @place.save
       flash[:success] = "#{new_place.nickname} was saved"
-      redirect_to user_path(@user)
+      redirect_to place_path(@place)
     else
       flash[:error] = "This place could not be saved"
       redirect_to :back #ask about changing this

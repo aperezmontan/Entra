@@ -1,30 +1,27 @@
 $(document).on('ready page:load', function(){
 
-  addForm('#add-guest', 'guests');
-  addForm('#add-key', 'keys');
-  addForm('#add-place', 'places');
+  addForm('#add-guest', '/guests/new', 'GET');
 
-  $('#form-drop-down').on('click', '#cancel-form', function(event){
-    event.preventDefault();
-    console.log($('#form-drop-down'))
-    $('#form-drop-down').html('<hr>');
-  });
+  var placeId = $('#add-key').data('place-id')
+
+  addForm('#add-key', '/keys?place_id=' + placeId, 'POST');
+  addForm('#add-place', '/places/new', 'GET');
 
 })
 
-var addForm = function(selector, type) {
+var addForm = function(selector, url, method, data) {
   $(selector).on('click', function(event){
-    data = $(event.target).data();
 
     $.ajax({
-      method: 'GET',
-      url: '/'+ type +'/new',
-      data: data
+      method: method,
+      url: url,
     })
     .done(function ( response ) {
-      console.log(data);
       response = response + dropDownFooter;
       $('#form-drop-down').append(response);
+      if (selector == '#add-key') {
+        $('#form-drop-down').find('#cancel-form').addClass('delete-key')
+      }
     })
     .fail(function(jqXHR,textStatus){
       /* code ... */
@@ -37,5 +34,5 @@ var addForm = function(selector, type) {
 
 
 var dropDownFooter =
-  "<a href='/' id='cancel-form'>Cancel</a>"+
+  "<a href='/' id='cancel-form'>Cancel And Delete</a>"+
   "<hr>";

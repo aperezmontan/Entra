@@ -45,7 +45,7 @@ class Key < ActiveRecord::Base
 
   def prepare_for_create
     set_secret_url
-    convert_times_to_utc
+    # convert_times_to_utc
   end
 
   def set_secret_url

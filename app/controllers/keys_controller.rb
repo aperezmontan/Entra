@@ -1,6 +1,6 @@
 class KeysController < ApplicationController
-  before_action :require_login, only: [:show, :new, :edit, :delete]
-  before_action :get_key, only: [:update, :used_at, :delete]
+  before_action :require_login, only: [:show, :new, :edit, :destroy]
+  before_action :get_key, only: [:update, :used_at, :destroy]
   def show
 
   end
@@ -17,15 +17,30 @@ class KeysController < ApplicationController
   end
 
   def create
-    new_key = Key.new(get_params)
-    if new_key.save
-      send_mail new_key
-      flash[:success] = "New key created"
-      redirect_to place_path(new_key.place)
-    else
-      flash[:error] = "Key could not be created :("
-      redirect_to user_path(current_user)
+    @key = Key.new
+    @key.place_id = params[:place_id]
+    @key.start_date = Time.now.getutc
+    @key.end_date = @key.start_date + 86400
+    @guest = Guest.where(email: 'entra.app+anonymous@gmail.com', user_id:current_user.id, phone:'none', name:'Anonymous Guest').first_or_create
+    @key.guest = @guest
+    if @key.save
+      respond_to do |format|
+        if request.xhr?
+          format.html { render :new, layout: false}
+        else
+          format.html { render :new }
+        end
+      end
     end
+    # new_key = Key.new(get_params)
+    # if new_key.save
+    #   send_mail new_key
+    #   flash[:success] = "New key created"
+    #   redirect_to place_path(new_key.place)
+    # else
+    #   flash[:error] = "Key could not be created :("
+    #   redirect_to user_path(current_user)
+    # end
   end
 
   def edit
@@ -44,8 +59,17 @@ class KeysController < ApplicationController
     render :json => params
   end
 
-  def delete
-
+  def destroy
+    if @key.destroy
+      if request.xhr?
+        flash[:error] = "Key has been deleted"
+        render json: {deleted: true}
+      else
+        redirect_to root_path
+      end
+    else
+      flash[:error] = "Key was not deleted"
+    end
   end
 
   def find_guests_key_by_url

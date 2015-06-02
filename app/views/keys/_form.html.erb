@@ -1,17 +1,6 @@
-<%= form_for @key do |f| %>
-<%= f.label :place_id, "Select Place" %>
-<%= f.collection_select(:place_id, places, :id, :nickname)%></br>
-<%= f.label :guest_id, "Select Guest" %>
-<%= f.collection_select(:guest_id, guests, :id, :name)%></br>
-<%= f.label :start_date, "Select Start Time" %>
-<% Time.use_zone('Eastern Time (US & Canada)') do %>
-  <%= f.datetime_select :start_date %>
-<% end %>
-</br>
-<%= f.label :end_date, "Select End Time" %>
-<% Time.use_zone('Eastern Time (US & Canada)') do %>
-  <%= f.datetime_select :end_date %>
-<% end %>
-</br>
-<%=  f.submit %>
-<% end %>
+<div class='url-link col-md-6 col-centered'>
+  <div class="input-group">
+    <span class="input-group-addon" id="sizing-addon2">Key</span>
+    <input type="text" class="form-control secret-url" data-key-id='<%= @key.id %>' value="<%= base_url + '/' + @key.secret_url %>" aria-describedby="sizing-addon2">
+  </div>
+</div>
