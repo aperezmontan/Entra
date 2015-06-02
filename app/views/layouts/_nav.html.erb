@@ -24,7 +24,7 @@
         <% unless logged_in? %>
         <li><%= link_to "Sign up",signup_path %></li>
         <li>
-          <%= link_to 'Sign in', '#nav-collapse2', class:'btn btn-default',
+          <%= link_to 'Sign in', '#nav-collapse2',
             data: {toggle:'collapse'}  %>
         </li>
       </ul>
