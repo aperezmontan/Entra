@@ -16,14 +16,19 @@
       <% end %>
 
     <% else %>
-      <div id='lock-container'>
+
+      <% if @key.has_expired? %>
         <p>Your key will be available in : </p>
         <div id="available-in"></div>
         <%= javascript_tag do %>
           var startDate = <%= raw @key.get_start_date_string.to_json%>;
           availableIn(startDate);
         <% end %>
-      </div>
+      <% else %>
+          <p>Your key has expired, notify <%= @key.guest.name %></p>
+          <%= render 'keys/notifications' %>
+      <% end %>
+      
     <% end %>
   </div>
 <% end %>
