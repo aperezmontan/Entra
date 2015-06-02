@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :places, except: [:index]
   resources :keys, except: [:index]
   resources :notifications, only: [:create]
+  resources :logs, only: [:index]
 
   get 'login'   => 'sessions#new'
   get 'logout'  => 'sessions#destroy'

@@ -1,5 +1,5 @@
 class Log < ActiveRecord::Base
-  belongs_to :key
+  belongs_to :loggable
 
   def new_key_success_message(key)
    message = "SUCCESS ! You created a new key for #{key.guest.name} at #{key.place.nickname}"
