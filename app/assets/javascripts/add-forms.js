@@ -39,20 +39,3 @@ var addForm = function(selector, type) {
 var dropDownFooter =
   "<a href='/' id='cancel-form'>Cancel</a>"+
   "<hr>";
-
-  // function(event){
-
-  //   $.ajax({
-  //     method: 'GET',
-  //     url: '/clients/new'
-  //   })
-  //   .done(function ( response ) {
-  //     response = response + dropDownFooter;
-  //     $('#form-drop-down').append(response);
-  //   })
-  //   .fail(function(jqXHR,textStatus){
-  //     /* code ... */
-  //   })
-  //   .always(function(jqXHR,textStatus){
-  //     /* code ... */
-  //   });
