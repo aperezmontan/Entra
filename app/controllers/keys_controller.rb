@@ -48,9 +48,8 @@ class KeysController < ApplicationController
   end
 
   def update
-    key = Key.find_by(id: params[:id])
-    key.assign_attributes(get_params)
-    render json: {updated: key.save} 
+    @key.assign_attributes(get_params)
+    render json: {updated: @key.save}
   end
 
   def used_at
