@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create]
   resources :users, except: [:index, :show]
   resources :guests, except: [:index, :show]
-  resources :places, except: [:index]
+  resources :places
   resources :keys, except: [:index]
   resources :notifications, only: [:create]
 
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   get '/:hash' => "keys#find_guests_key_by_url"
 
+  put 'place/:id/default' => "places#set_default_place"
 
 
 

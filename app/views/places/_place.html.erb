@@ -1,7 +1,7 @@
 <div class="list-group-item individual-item">
   <%= place.nickname %><br>
   <i class="fa fa-home"></i>: <%= place.address %>
-  <%= link_to "/place/#{place.id}/key", method: :put, class: "btn btn-default" do %>
-      <i class="fa fa-lock"></i> Unlock <%= place.nickname %>
+  <%= link_to "/place/#{place.id}/default", method: :put, class: "btn btn-default" do %>
+      Make <%= place.nickname %> default place
   <% end %>
 </div>

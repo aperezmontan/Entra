@@ -1,9 +1,17 @@
 class PlacesController < ApplicationController
-  before_action :require_login, only: [:new, :create, :update]
-  before_action :get_place, only: [:show, :update, :delete, :key]
+  before_action :require_login, only: [:new, :create, :update,:set_default_place]
+  before_action :get_place, only: [:show, :update, :delete, :key,:set_default_place]
   before_action :get_user, only: [:show, :create]
 
+  def index
+    @places = Place.where(admin_id: current_user.id)
+  end
+
   def show
+    unless @place
+      redirect_to new_place_path
+    end
+    @is_default = current_user.default_place == @place
   end
 
   def new
@@ -21,8 +29,12 @@ class PlacesController < ApplicationController
     @place = Place.new(get_params)
     @place.admin_id = @user.id
     if @place.save
-      flash[:success] = "#{new_place.nickname} was saved"
-      redirect_to place_path(@place)
+      flash[:success] = "#{@place.nickname} was saved"
+      if params[:default]
+        set_default_place
+      else
+        redirect_to place_path(@place)
+      end
     else
       flash[:error] = "This place could not be saved"
       redirect_to :back #ask about changing this
@@ -57,6 +69,25 @@ class PlacesController < ApplicationController
     place.save
     render :json => params
   end
+
+  def set_default_place    
+    current_user.default_place = params[:action] == 'remove-default'? nil : @place 
+    saved = current_user.save
+    if saved
+      flash[:success] = "#{@place.nickname} is your default place."
+      redirect_url = place_path(@place) 
+    else
+      flash[:error] = "Couldn't set #{@place.nickname} as your default."
+      redirect_url = :back
+    end
+    if request.xhr?
+      render json: {updated: saved}
+    else
+      redirect_to redirect_url
+    end
+  end
+
+
 
   private
 

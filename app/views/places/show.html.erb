@@ -1,3 +1,11 @@
+<div id="default-container">
+  <% if @is_default %>
+    <a href='#' class='default-place' data-place-id="<%=@place.id%>" data-action="remove-default">This is your default place</a>
+  <% else %>
+    <a href='#' class='default-place' data-place-id="<%=@place.id%>" data-action="set-default">Set this place as your default</a>
+  <% end %>
+</div>
+
 <%= render partial: 'giant_lock', locals: { name: @user.first_name, id: @place.id, place_name: @place.nickname, tag: 'place'} %>
 
 <div id="form-drop-down" class="col-md-12 text-center"><hr></div>
