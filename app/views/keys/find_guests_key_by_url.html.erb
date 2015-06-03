@@ -1,38 +1,48 @@
 <div id='guest-container' class='container-fluid text-center'>
 <% if @key.unlimited_access %>
+
  <%= render partial: 'places/giant_lock', locals: { name: @key.guest.name, id: @key.id, place_name: @key.place.nickname, tag: 'key'} %>
+
 <% elsif @key.used_at %>
-  <div id="notification-center">
+ 
+  <div id="notification-center" class='col-md-7 col-centered'>
     <p>This key has been already used. Please notify <%= @key.guest.user.first_name %></p>
     <%= render 'keys/notifications' %>
   </div>
+
 <% else %>
   <div id="open-container" class='col-md-7 col-centered'>
     <% if @key.is_available? %>
 
       <% if !@key.requested %>
         <%= render partial: 'places/giant_lock', locals: { name: @key.guest.name, id: @key.id, place_name: @key.place.nickname, tag: 'key'} %>
+      
+        <p>This key expires in : </p>
+        <div id="available-in"></div>
+        <%= javascript_tag do %>
+          var endDate = <%= raw @key.get_end_date_string.to_json%>;
+          availableIn(endDate);
+        <% end %>
+
       <% else %>
           <p>Please wait until the buzzer open the door for you.</p>
           <p>If it doesn't :</p>
           <%= render 'keys/notifications' %>
       <% end %>
 
-    <% else %>
+    <% end %>
 
-      <% if @key.has_expired? %>
-        <p>Your key will be available in : </p>
-        <div id="available-in"></div>
-        <%= javascript_tag do %>
-          var startDate = <%= raw @key.get_start_date_string.to_json%>;
-          availableIn(startDate);
-        <% end %>
-      <% else %>
-          <p>Your key has expired, notify <%= @key.guest.name %></p>
-          <%= render 'keys/notifications' %>
-      <% end %>
+  </div>
 
+<% end %>
+
+<div id="key-countdown-container" class='container-fluid text-center'>
+  <div class='col-md-7 col-centered'>
+    <% if @key.has_expired? %>
+        <p>Your key has expired, notify <%= @key.guest.name %></p>
+        <%= render 'keys/notifications' %>
     <% end %>
   </div>
-<% end %>
+</div>
+
 </div>
