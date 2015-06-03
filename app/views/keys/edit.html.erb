@@ -1,0 +1,8 @@
+
+Reactivate key for guest : <%= @key.guest.name %>
+
+<%= form_for @key do |f| %>
+  <%= f.hidden_field :used_at, value: nil %>
+  <%= f.hidden_field :end_date, value: @key.end_date + 24.hours %>
+  <%= f.submit "Reactivate!" %>
+<% end %>
