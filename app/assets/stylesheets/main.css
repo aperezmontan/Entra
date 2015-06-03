@@ -58,6 +58,10 @@ footer {
   margin:auto;
 }
 
+.key-expires-in {
+  cursor: default;
+}
+
 .form-control, .input-group-addon {
   border-top: none;
   border-left: none;
