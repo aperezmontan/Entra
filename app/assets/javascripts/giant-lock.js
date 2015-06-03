@@ -34,7 +34,7 @@ var giantLockForPlaceFn = function(event){
       $(event.target).attr('class', 'fa fa-lock')
       $(event.target).attr('id', 'giant-lock')
       ensureFalse();
-    }, 4000);
+    }, 5000);
   })
   .fail(function(jqXHR,textStatus){
     ensureFalse();
