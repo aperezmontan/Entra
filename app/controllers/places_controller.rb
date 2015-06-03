@@ -12,7 +12,7 @@ class PlacesController < ApplicationController
       redirect_to new_place_path
     end
     @is_default = current_user.default_place == @place
-    @activity = Log.activity(@place.keys.pluck(:id),@place.id).order(created_at: :asc)
+    @activity = Log.activity(@place.keys.pluck(:id),@place.id).order(created_at: :asc) if @place
   end
 
   def new
