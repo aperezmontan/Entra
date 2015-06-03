@@ -1,5 +1,5 @@
 var fade_flash = function() {
-  $(".alert").delay(5000).fadeOut("slow");
+  $(".alert").delay(2000).fadeOut("slow");
 };
 
 var flash_class = function(type){

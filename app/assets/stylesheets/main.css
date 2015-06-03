@@ -58,6 +58,14 @@ footer {
   margin:auto;
 }
 
+#form-drop-down {
+  padding-top: 20px;
+}
+
+.cancel-container {
+  padding: 10px;
+}
+
 .key-expires-in:disabled {
   color: white;
   cursor: default;

@@ -7,6 +7,10 @@ $(document).on('ready page:load', function(){
   addForm('#add-key', '/keys?place_id=' + placeId, 'POST');
   addForm('#add-place', '/places/new', 'GET');
 
+  $('#form-drop-down').on('click', '.secret-url', function(event){
+    this.select();
+  })
+
 })
 
 var addForm = function(selector, url, method, data) {
@@ -35,5 +39,7 @@ var addForm = function(selector, url, method, data) {
 
 
 var dropDownFooter =
+  "<div class='container-fluid cancel-container col-md-12'>"+
   "<a href='/' id='cancel-form'>Cancel And Delete</a>"+
-  "<hr>";
+  "<hr>" +
+  "</div>";
