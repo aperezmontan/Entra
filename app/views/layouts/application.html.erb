@@ -8,14 +8,18 @@
   <%= stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Cutive+Mono' %>
   <%= csrf_meta_tags %>
 </head>
+<% if logged_in? %>
 <body>
+<% else %>
+<body class='background-image'>
+<% end %>
   <div class="container">
     <%= render 'layouts/nav' %>
     <%= render 'layouts/flash_messages' %>
     <%= yield %>
-    <div class="col-md-12 text-center">
+<!--     <div class="col-md-12 text-center">
       <footer>#westayhumble</footer>
-    </div>
+    </div> -->
   </div>
 </body>
 </html>

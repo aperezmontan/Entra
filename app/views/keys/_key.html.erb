@@ -1,9 +1,15 @@
 <li class="list-group-item individual-item">
-  <p><i class="fa fa-key"></i> for <%= key.guest.name %></p>
-  <% if key.unlimited_access %>
-    <p>This key has unlimited access</p>
-  <% else %>
-    <p>Valid on: <%= key.cleaner_time(:start_date) %></p>
-    <p>Expires: <%= key.cleaner_time(:end_date) %></p>
-  <% end %>
+  <p>
+    <% if (key.end_date > Time.now && key.used_at == nil) || key.unlimited_access == true %>
+      <i class="fa fa-key valid-key"></i>
+    <% else %>
+      <i class="fa fa-key invalid-key"></i>
+    <% end %>
+    <% if key.unlimited_access %>
+      This key has unlimited access
+    <% else %>
+      Expires: <%= key.cleaner_time(:end_date) %>
+    <% end %>
+  </p>
+  <%= link_to base_url + '/' + key.secret_url, base_url + '/' + key.secret_url %>
 </li>
