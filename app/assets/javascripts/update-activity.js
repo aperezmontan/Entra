@@ -28,20 +28,23 @@ var logFormat = function(newLogs){
       $('#activityList div').remove();
       if (log['message'].indexOf("SUCCESS") > -1){
         var message = log['message'].substring(9,log['message'].length)
-        $('#activityList').prepend(parseLog(html,log,message,"fa fa-check"));
+        $('#activityList').prepend(parseLog(html,log,message,"fa fa-check",calculateSince(log['created_at'])));
       } else {
         var message = log['message'].substring(10,log['message'].length)
-        $('#activityList').prepend(parseLog(html,log,message,"fa fa-times"));
+        $('#activityList').prepend(parseLog(html,log,message,"fa fa-times",calculateSince(log['created_at'])));
       }
       $('#activityList i:first-child').hide().fadeIn('slow')
     }
   })
 }
 
-var parseLog = function(html,log,message,i_tag_class){
+var parseLog = function(html,log,message,i_tag_class,ago){
   html = html.replace('{created_at}',log['created_at']);
   html = html.replace('{message}',message);
   html = html.replace('{i_tag_class}',i_tag_class);
+  html = html.replace('{timeAgo}',ago);
+  console.log(html);
+  html = html.replace('just now</span> ago', 'just now</span>');
   return html;
 }
 
@@ -73,7 +76,9 @@ function calculateSince(datetime)
     if(sinceMin==0)
     {
         var sinceSec=Math.round((cTime-tTime)/1000);
-        if(sinceSec < 10)
+        if(sinceSec < 5)
+          var since='just now';
+        else if(sinceSec < 20)
           var since='less than 10 seconds';
         else if(sinceSec < 20)
           var since='less than 20 seconds';
