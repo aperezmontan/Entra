@@ -6,7 +6,10 @@ class NotificationsController < ApplicationController
     unless notification.save
       message = {notification_status: "not_success"}
     end
-    render :json => message
+    key = Key.find_by(id: params[:key_id])
+    res = GuestMailer.notification_email(key,current_user,params[:message],base_url).deliver_now
+    flash[:success] = "Email send successfully"
+    redirect_to :back
   end
 
   private

@@ -1,6 +1,7 @@
 class KeysController < ApplicationController
   before_action :require_login, only: [:show, :new, :edit, :destroy]
-  before_action :get_key, only: [:update, :used_at, :destroy]
+  before_action :get_key, only: [:update, :used_at, :destroy,:edit]
+  
   def show
 
   end
@@ -50,6 +51,13 @@ class KeysController < ApplicationController
   def update
     @key.assign_attributes(get_params)
     render json: {updated: @key.save}
+    saved = @key.save
+    if request.xhr?
+      render json: {updated: saved} 
+    else
+      flash[:success] = "Key reactivated" if saved
+      redirect_to place_path(@key.place)
+    end
   end
 
   def used_at
@@ -79,7 +87,7 @@ class KeysController < ApplicationController
   private
 
   def get_params
-    params.require(:key).permit(:place_id, :start_date, :guest_id, :end_date,:requested)
+    params.require(:key).permit(:place_id, :start_date, :guest_id, :end_date,:requested,:used_at)
   end
 
   def send_mail key
