@@ -3,6 +3,16 @@ include ActionView::Helpers::DateHelper
 class Log < ActiveRecord::Base
   belongs_to :loggable
 
+  scope :activity, -> (key_ids, place_id) { Log.where(["(loggable_type = ? and loggable_id in (?) and message like ?) or (loggable_type = ? and loggable_id in (?) and message like ?)","Key",key_ids,'%ACTIVITY%',"Place",place_id,'%ACTIVITY%']) }
+
+  def guest_access(key)
+   self.message = "ACTIVITY #{key.guest.name} opened -> #{key.place.nickname}"
+  end
+
+  def admin_access(place)
+   self.message = "ACTIVITY You opened -> #{place.nickname}"
+  end
+
   def new_key_success_message(key)
    self.message = "SUCCESS ! You created a new key for #{key.guest.name} at #{key.place.nickname}"
   end

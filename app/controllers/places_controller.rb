@@ -12,6 +12,7 @@ class PlacesController < ApplicationController
       redirect_to new_place_path
     end
     @is_default = current_user.default_place == @place
+    @activity = Log.activity(@place.keys.pluck(:id),@place.id).order(created_at: :asc)
   end
 
   def new
@@ -80,26 +81,29 @@ class PlacesController < ApplicationController
     place.master_unlock = false
     place.save
     new_log = place.logs.build()
+    new_activity = place.logs.build()
     if params[:status] == "opened"
       new_log.opened_successfully_message(place)
     else
       new_log.closed_successfully_message(place)
+      new_activity.admin_access(place)
+      new_activity.save
     end
     new_log.save
     render :json => params
   end
 
-  def set_default_place  
+  def set_default_place
     remove_default = params[:place][:action] == 'remove-default' if (params[:place] && params[:place][:action])
-    current_user.default_place = remove_default ? nil : @place 
+    current_user.default_place = remove_default ? nil : @place
     saved = current_user.save
     if saved
-      if remove_default 
+      if remove_default
         flash[:notice] = "#{@place.nickname} is no longer your default."
       else
         flash[:success] = "#{@place.nickname} is your default place."
       end
-      redirect_url = place_path(@place) 
+      redirect_url = place_path(@place)
     else
       flash[:error] = "Couldn't set #{@place.nickname} as your default."
       redirect_url = :back
