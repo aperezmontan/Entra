@@ -2,7 +2,7 @@
   <div class="input-group">
     <span class="input-group-addon" id="sizing-addon2">Key</span>
     <input type="text" class="form-control secret-url" data-key-id='<%= @key.id %>' value="<%= base_url + '/' + @key.secret_url %>" aria-describedby="sizing-addon2">
-    <input type="text" data-end-date='<%=@key.end_date %>' class="key-expires-in form-control" disabled="disabled" value="This key is valid for the next 24hrs">
+    <input type="text" data-end-date='<%=@key.end_date %>' class="key-expires-in form-control" disabled="disabled" value="This key expires in 24hrs">
   </div>
 
 </div>

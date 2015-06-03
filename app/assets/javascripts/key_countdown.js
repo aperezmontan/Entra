@@ -9,7 +9,6 @@ $(document).on('ready page:load', function(){
   });
 })
 
-
 function convertMS(ms) {
   var d, h, m, s;
   s = Math.floor(ms / 1000);
