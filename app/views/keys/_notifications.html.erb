@@ -2,7 +2,7 @@
   <%= hidden_field_tag :user_id, @key.place.admin_id %>
   <%= hidden_field_tag :key_id, @key.id %>
   <div class="input-group input-group-lg margin-bottom-10">
-    <%= text_area_tag :message, nil, cols: 50, class: 'form-control notification-text' %>
+    <%= text_area_tag :message, nil, cols:'50', class: 'form-control notification-text', placeholder:"Notify #{@key.place.admin.first_name} here..." %>
   </div>
   <%= submit_tag "Notify",class: 'btn btn-default' %>
 <% end %>

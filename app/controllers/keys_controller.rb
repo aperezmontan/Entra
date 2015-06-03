@@ -5,16 +5,16 @@ class KeysController < ApplicationController
 
   end
 
-  def new
-    @key = Key.new
-    respond_to do |format|
-      if request.xhr?
-        format.html { render :new, layout: false}
-      else
-        format.html { render :new }
-      end
-    end
-  end
+  # def new
+  #   @key = Key.new
+  #   respond_to do |format|
+  #     if request.xhr?
+  #       format.html { render :new, layout: false}
+  #     else
+  #       format.html { render :new }
+  #     end
+  #   end
+  # end
 
   def create
     @key = Key.new
@@ -48,9 +48,8 @@ class KeysController < ApplicationController
   end
 
   def update
-    key = Key.find_by(id: params[:id])
-    key.assign_attributes(get_params)
-    render json: {updated: key.save} 
+    @key.assign_attributes(get_params)
+    render json: {updated: @key.save}
   end
 
   def used_at

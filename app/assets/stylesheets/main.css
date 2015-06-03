@@ -2,6 +2,10 @@
   font-family: 'Cutive Mono'
 }
 
+body {
+  margin-top: 10px;
+}
+
 .navbar-default {
   background-color: rgba(255, 255, 255, 0);
   border: 0px;
@@ -12,9 +16,7 @@
 }
 
 .individual-item {
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  outline: none;
 }
 
 #giant-lock {
@@ -54,4 +56,22 @@ footer {
 #guest-container{
   width:90%;
   margin:auto;
+}
+
+.key-expires-in {
+  cursor: default;
+}
+
+.form-control, .input-group-addon {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.input-group-addon, .panel-heading, .alert {
+  border-top-left-radius: 20px;
 }

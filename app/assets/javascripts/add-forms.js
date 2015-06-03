@@ -11,16 +11,17 @@ $(document).on('ready page:load', function(){
 
 var addForm = function(selector, url, method, data) {
   $(selector).on('click', function(event){
-
     $.ajax({
       method: method,
       url: url,
     })
     .done(function ( response ) {
       response = response + dropDownFooter;
-      $('#form-drop-down').append(response);
+      $('#form-drop-down').html(response);
       if (selector == '#add-key') {
+        $('#add-key').hide();
         $('#form-drop-down').find('#cancel-form').addClass('delete-key')
+        $("#form-drop-down").find(".secret-url").select();
       }
     })
     .fail(function(jqXHR,textStatus){

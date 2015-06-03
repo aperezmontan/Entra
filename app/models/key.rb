@@ -7,7 +7,7 @@ class Key < ActiveRecord::Base
   before_create :prepare_for_create
 
   def cleaner_time(start_or_end)
-    self.send(start_or_end).getlocal.strftime("%I:%M %p %a %b %e, %Y")
+    self.send(start_or_end).getlocal.strftime("%a %b %e @ %I:%M %p")
   end
 
   def place_and_time

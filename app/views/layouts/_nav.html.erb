@@ -24,10 +24,9 @@
         <% unless logged_in? %>
         <li><%= link_to "Sign up",signup_path %></li>
         <li>
-          <%= link_to 'Sign in', '#nav-collapse2', class:'btn btn-default',
+          <%= link_to 'Sign in', '#nav-collapse2',
             data: {toggle:'collapse'}  %>
         </li>
-      </ul>
       <div class="collapse nav navbar-nav nav-collapse" id="nav-collapse2">
         <%= form_tag sessions_path, class: 'navbar-form navbar-right form-inline' do %>
         <div class="form-group">
@@ -49,6 +48,10 @@
         <% current_user.places.each do |place| %>
           <li><%= link_to place.nickname, place_path(place) %></li>
         <% end %>
+        <li><%= link_to new_place_path do %>
+            <i id="add-place" class="fa fa-plus"></i>
+            <% end %>
+        </li>
         <li>
           <%= link_to logout_path do %>
             Sign Out <i class="fa fa-sign-out"></i>
