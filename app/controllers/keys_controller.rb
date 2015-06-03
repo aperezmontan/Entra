@@ -1,6 +1,6 @@
 class KeysController < ApplicationController
-  before_action :require_login, only: [:show, :new, :edit, :destroy]
   before_action :get_key, only: [:update, :used_at, :destroy,:edit]
+  before_action :require_login, only: [:show, :new, :edit, :destroy]
 
   def show
 
