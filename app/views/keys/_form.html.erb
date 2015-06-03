@@ -1,10 +1,23 @@
-<div class='url-link col-md-7 col-centered'>
-  <div class="input-group">
-    <input type="text" class="form-control secret-url text-center" data-key-id='<%= @key.id %>' value="<%= base_url + '/' + @key.secret_url %>" aria-describedby="sizing-addon2">
-    <input type="text" data-end-date='<%=@key.end_date %>' class="key-expires-in form-control text-center" disabled="disabled" value="This key expires in 24hrs">
-    <div class="form-control">
-      Give this guest unlimited access <input type="checkbox" aria-label="...">
+<div class="container-fluid col-centered">
+  <div class='url-link col-md-7 col-centered'>
+    <div class="list-group">
+      <input type="text" class="list-group-item form-control secret-url text-center" data-key-id='<%= @key.id %>' value="<%= base_url + '/' + @key.secret_url %>" aria-describedby="sizing-addon2">
+      <input type="text" data-end-date='<%=@key.end_date %>' class="form-control key-expires-in list-group-item text-center" disabled="disabled" value="This key expires in 24hrs">
+      <div class="list-group-item">
+        <span>Unlimited access? <input id="give-unlimited-access" type="checkbox" aria-label="..."></span>
+      </div>
+    </div>
+    <div id="extend-access-container" class="btn-group">
+      <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+        Extend Access <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a id="48_hours" href="">48 Hours</a></li>
+        <li><a id="3_days" href="">Three Days</a></li>
+        <li><a id="1_week" href="">A Week</a></li>
+        <li><a id="2_weeks" href="">Two Weeks</a></li>
+        <li><a id="1_month" href="">A Month</a></li>
+      </ul>
     </div>
   </div>
-
 </div>

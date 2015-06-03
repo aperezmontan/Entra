@@ -41,6 +41,14 @@ class Key < ActiveRecord::Base
     end_date > Time.now
   end
 
+  def update_key_access params
+    days_to_add = params['add_days']
+    if days_to_add
+      self.start_date = Time.now
+      self.end_date = self.start_date + days_to_add.to_i.days
+    end
+  end
+
   private
 
   def prepare_for_create

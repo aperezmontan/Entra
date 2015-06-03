@@ -21,7 +21,7 @@ class KeysController < ApplicationController
     @key = Key.new
     @key.place_id = params[:place_id]
     @key.start_date = Time.now.getutc
-    @key.end_date = @key.start_date + 86400
+    @key.end_date = @key.start_date + 24.hours
     @guest = Guest.where(email: 'entra.app+anonymous@gmail.com', user_id:current_user.id, phone:'none', name:'Anonymous Guest').first_or_create
     @key.guest = @guest
     if @key.save
@@ -51,8 +51,9 @@ class KeysController < ApplicationController
 
   def update
     @key.assign_attributes(get_params)
-    render json: {updated: @key.save}
+    @key.update_key_access params
     saved = @key.save
+    return flash[:error] = 'Key was not saved' unless saved
     if request.xhr?
       render json: {updated: saved}
     else
@@ -88,7 +89,15 @@ class KeysController < ApplicationController
   private
 
   def get_params
-    params.require(:key).permit(:place_id, :start_date, :guest_id, :end_date,:requested,:used_at)
+    params.require(:key).permit(
+      :place_id,
+      :start_date,
+      :guest_id,
+      :end_date,
+      :requested,
+      :used_at,
+      :unlimited_access
+      )
   end
 
   def send_mail key
