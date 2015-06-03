@@ -3,12 +3,13 @@ class SessionsController < ApplicationController
   def new
     if logged_in?
       default = current_user.default_place
-      if default 
+      if default
         redirect_to place_path(default)
       else
         redirect_to places_path
       end
     end
+    @home = true
   end
 
   def create

@@ -11,6 +11,14 @@
   background-size: cover;
 }
 
+/*.light-background-image {
+  background: linear-gradient(180, rgba(255, 255, 255, 0.96) 10, no-repeat center center fixed, url(stairs-opt.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}*/
+
 body {
   margin-top: 10px;
 }

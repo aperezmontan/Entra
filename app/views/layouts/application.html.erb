@@ -8,8 +8,8 @@
   <%= stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Cutive+Mono' %>
   <%= csrf_meta_tags %>
 </head>
-<% if logged_in? %>
-<body>
+<% if !@home %>
+<body class='light-background-image'>
 <% else %>
 <body class='background-image'>
 <% end %>
