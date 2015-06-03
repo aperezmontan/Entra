@@ -8,7 +8,7 @@ var updateAllActivity = function(placeId){
   activity.forEach(function(act){
     logFormat(act);
   })
-  updateNewActivity(Date.now, placeId);
+  updateNewActivity(new Date().toISOString(), placeId);
       // $('#activityList i:first-child').hide().fadeIn('slow')
 }
 
@@ -62,38 +62,6 @@ var lastUpdate = function(){
   }
 }
 
-
-// var logFormat = function(act){
-//   var html = "<i class='{i_tag_class}'></i><span data-log-time='{created_at}'> {message} <span class='timestamp'>{timeAgo}</span> ago</span></br>";
-//   act.forEach(function(log){
-//     var logdate = new Date(log['created_at'])
-//     var ld = new Date(lastUpdate())
-//     if(logdate > ld){
-//       $('#activityList div').remove();
-//       if (log['message'].indexOf("SUCCESS") > -1){
-//         var message = log['message'].substring(9,log['message'].length)
-//         $('#activityList').prepend(parseLog(html,log,message,"fa fa-check",calculateSince(log['created_at'])));
-//       } else {
-//         var message = log['message'].substring(10,log['message'].length)
-//         $('#activityList').prepend(parseLog(html,log,message,"fa fa-times",calculateSince(log['created_at'])));
-//       }
-//       $('#activityList i:first-child').hide().fadeIn('slow')
-//     }
-//   })
-// }
-
-// var parseLog = function(html,log,message,i_tag_class,ago){
-
-//   html = html.replace('{created_at}',log['created_at']);
-//   html = html.replace('{message}',message);
-//   html = html.replace('{i_tag_class}',i_tag_class);
-//   html = html.replace('{timeAgo}',ago);
-//   console.log(html);
-//   html = html.replace('just now</span> ago', 'just now</span>');
-//   return html;
-// }
-
-
   setInterval(function() {
     console.log('updating time since last activity...');
     var logSpans = $('#activityList>span');
@@ -101,16 +69,6 @@ var lastUpdate = function(){
       $(v).find('.timestamp').html(" " + calculateSince($(v).data('log-time'))).fadeIn('slow');
     });
 }, 15000);
-
-// setInterval(function() {
-//     console.log('updating time since for tweets...');
-//     var tweets = $('#tweets-container>ul>li');
-//     $.each(tweets, function(i,v){
-//         //update the time since for the tweet
-//         var tweetsObjs = TwitterApp.controllers.Tweets.getTweets();
-//         $(v).find('.timestamp').html(" " + calculateSince(tweetsObjs[i].created_at)).fadeIn();
-//     });
-// }, 15000);
 
 function calculateSince(datetime)
 {
