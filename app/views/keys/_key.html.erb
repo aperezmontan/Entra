@@ -1,5 +1,10 @@
 <li class="list-group-item individual-item">
-  <p><i class="fa fa-key"></i>
+  <p>
+    <% if (key.end_date > Time.now && key.used_at == nil) || key.unlimited_access == true %>
+      <i class="fa fa-key valid-key"></i>
+    <% else %>
+      <i class="fa fa-key invalid-key"></i>
+    <% end %>
     <% if key.unlimited_access %>
       This key has unlimited access
     <% else %>
