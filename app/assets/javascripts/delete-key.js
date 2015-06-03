@@ -21,6 +21,8 @@ $(document).on('ready page:load', function(){
   $('#form-drop-down').on('click', '#cancel-form', function(event){
     event.preventDefault();
     $('#form-drop-down').html('<hr>');
+    $('#add-key').show();
+    clearInterval(refreshTime);
   });
 
 
