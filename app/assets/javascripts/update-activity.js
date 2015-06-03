@@ -39,6 +39,7 @@ var logFormat = function(newLogs){
 }
 
 var parseLog = function(html,log,message,i_tag_class,ago){
+
   html = html.replace('{created_at}',log['created_at']);
   html = html.replace('{message}',message);
   html = html.replace('{i_tag_class}',i_tag_class);
@@ -48,9 +49,10 @@ var parseLog = function(html,log,message,i_tag_class,ago){
   return html;
 }
 
-var lastDate;
+var lastDate = 0;
 
 var lastUpdate = function(){
+  console.log('lastdate', lastDate)
   if ($('#activityList span:first-of-type').data('log-time') === undefined){
     if(!lastDate) lastDate = Date.now();
     return lastDate;
@@ -60,11 +62,15 @@ var lastUpdate = function(){
 }
 
   setInterval(function() {
+    var thing = "";
     console.log('updating time since last activity...');
     var logSpans = $('#activityList>span');
     $.each(logSpans, function(i,v){
-        //update the time since for the tweet
-        $(v).find('.timestamp').html(" " + calculateSince($(v).data('log-time'))).fadeIn();
+      if (thing.indexOf("just now") >= 0){
+        return thing = $(v).find('.timestamp').append(" ago");
+      }
+      console.log('new html', thing);
+      $(v).find('.timestamp').html(" " + calculateSince($(v).data('log-time'))).fadeIn('slow');
     });
 }, 15000);
 
