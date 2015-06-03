@@ -58,8 +58,15 @@ footer {
   margin:auto;
 }
 
-.key-expires-in {
+.key-expires-in:disabled {
+  color: white;
   cursor: default;
+  background-color: rgba(100, 10, 15, 0.4);
+}
+
+.secret-url {
+  font-weight: bold;
+  color: rgba(20,10,10,0.9);
 }
 
 .form-control, .input-group-addon {
