@@ -3,5 +3,7 @@
 <%=  f.text_field :nickname, placeholder: "Home, Work, DBC"  %>
 <%=  f.label :address %>
 <%=  f.text_field :address, placeholder: "48 Wall St" %>
+<%=  f.label "Set as default" %>
+<input type="checkbox" name="default" />
 <%=  f.submit %>
 <% end %>
