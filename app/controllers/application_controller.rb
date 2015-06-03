@@ -35,17 +35,17 @@ class ApplicationController < ActionController::Base
   end
 
   def flash_message
-     [:error, :warning, :success, :notice, nil].each do |type|
-       return "" if type.nil?
-       return flash[type] unless flash[type].blank?
-     end
+    [:error, :success, :warning, :notice, nil].each do |type|
+      return "" if type.nil?
+      return flash[type] unless flash[type].blank?
+    end
   end
 
   def flash_type
-     [:error, :warning, :success, :notice, nil].each do |type|
-         return "" if type.nil?
-         return type unless flash[type].blank?
-     end
+    [:error, :success, :warning, :notice, nil].each do |type|
+      return "" if type.nil?
+      return type unless flash[type].blank?
+    end
   end
 
 end

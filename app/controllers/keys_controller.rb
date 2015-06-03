@@ -1,7 +1,7 @@
 class KeysController < ApplicationController
   before_action :require_login, only: [:show, :new, :edit, :destroy]
   before_action :get_key, only: [:update, :used_at, :destroy,:edit]
-  
+
   def show
 
   end
@@ -27,6 +27,7 @@ class KeysController < ApplicationController
     if @key.save
       respond_to do |format|
         if request.xhr?
+          flash[:success] = "New key created!"
           format.html { render :new, layout: false}
         else
           format.html { render :new }
@@ -53,7 +54,7 @@ class KeysController < ApplicationController
     render json: {updated: @key.save}
     saved = @key.save
     if request.xhr?
-      render json: {updated: saved} 
+      render json: {updated: saved}
     else
       flash[:success] = "Key reactivated" if saved
       redirect_to place_path(@key.place)
