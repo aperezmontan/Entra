@@ -1,13 +1,16 @@
-<%= form_for @user do |f| %>
-<%=  f.label :first_name %>
-<%=  f.text_field :first_name %>
-<%=  f.label :last_name %>
-<%=  f.text_field :last_name %>
-<%=  f.label :email %>
-<%=  f.text_field :email %>
-<%=  f.label :password %>
-<%=  f.password_field :password %>
-<%=  f.label :password_confirmation, "Confirm Password" %>
-<%=  f.password_field :password_confirmation %>
-<%=  f.submit %>
-<% end %>
+<div class="container-fluid col-md-8 col-centered">
+  <%= form_for @user do |f| %>
+  <%=  f.label :first_name %>
+  <%=  f.text_field :first_name, class:'form-control', placeholder:'First' %>
+  <%=  f.label :last_name %>
+  <%=  f.text_field :last_name, class:'form-control', placeholder:'Last' %>
+  <%=  f.label :email %>
+  <%=  f.email_field :email, class:'form-control', placeholder:'@' %>
+  <%=  f.label :password %>
+  <%=  f.password_field :password, class: 'form-control', placeholder:'***' %>
+  <%=  f.label :password_confirmation, "Confirm Password" %>
+  <%=  f.password_field :password_confirmation, class: 'form-control', placeholder:'***' %>
+  <br>
+  <%=  f.submit class:'btn btn-default' %>
+  <% end %>
+</div>

@@ -1,6 +1,6 @@
 $(document).on('ready page:load', function(event){
   var placeId = $('#giant-lock').data('place-id')
-    updateAllActivity(placeId);
+  updateAllActivity(placeId);
 })
 
 
