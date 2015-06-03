@@ -27,8 +27,8 @@ class Key < ActiveRecord::Base
     end
   end
 
-  def get_start_date_string
-    sd = start_date - 4.hours
+  def get_end_date_string
+    sd = end_date - 4.hours
     sd.strftime("%Y/%m/%d %H:%M:%S")
   end
 
@@ -38,7 +38,7 @@ class Key < ActiveRecord::Base
   end
 
   def has_expired?
-    end_date > Time.now
+    end_date < Time.now
   end
 
   def update_key_access params

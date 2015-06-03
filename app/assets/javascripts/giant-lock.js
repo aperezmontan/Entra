@@ -28,11 +28,9 @@ var giantLockForPlaceFn = function(event){
   })
   .done(function ( response ) {
     console.log(response)
-      $(event.target).attr('class', 'fa fa-unlock-alt');
-      $(event.target).attr('id', 'giant-lock-opened');
+    openLock(event);  
     setTimeout(function(){
-      $(event.target).attr('class', 'fa fa-lock')
-      $(event.target).attr('id', 'giant-lock')
+      closeLock(event);
       ensureFalse();
     }, 5000);
   })
@@ -41,6 +39,16 @@ var giantLockForPlaceFn = function(event){
   })
   .always(function(response){
   });
+}
+
+var openLock = function(event){
+  $(event.target).attr('class', 'fa fa-unlock-alt');
+  $(event.target).attr('id', 'giant-lock-opened');
+}
+
+var closeLock = function(event){
+  $(event.target).attr('class', 'fa fa-lock');
+  $(event.target).attr('id', 'giant-lock');
 }
 
 var ensureFalse = function(){
@@ -58,7 +66,11 @@ var giantLockForGuestFn = function(event){
     method: 'PUT',
     url: "/keys/" + $(event.target).data('key-id'),
     data: { key:{ requested: 'true' }}
-  }).done(function ( response ) {
-    location.reload();
+  }).done(function ( response ) {    
+    openLock(event);  
+    setTimeout(function(){
+      closeLock(event);
+      location.reload();
+    }, 5000);
   })
 }
