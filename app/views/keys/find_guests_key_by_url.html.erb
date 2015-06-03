@@ -1,5 +1,7 @@
 <div id='guest-container'>
-<% if @key.used_at %>
+<% if @key.unlimited_access %> 
+ <%= render partial: 'places/giant_lock', locals: { name: @key.guest.name, id: @key.id, place_name: @key.place.nickname, tag: 'key'} %>
+<% elsif @key.used_at %>
   <div id="notification-center">
     <p>This key has been already used. Please notify <%= @key.guest.user.first_name %></p>
     <%= render 'keys/notifications' %>
