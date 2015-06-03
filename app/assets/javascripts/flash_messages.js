@@ -19,9 +19,11 @@ var show_ajax_message = function(msg, type) {
 };
 
 $( document ).ajaxComplete(function(event, request) {
-  console.log('ajaxComplete')
+  console.log('ajaxComplete');
     var msg = request.getResponseHeader('X-Message');
     var type = request.getResponseHeader('X-Message-Type');
-    show_ajax_message(msg, type); //use whatever popup, notification or whatever plugin you want
+    if(msg && type){
+      show_ajax_message(msg, type); //use whatever popup, notification or whatever plugin you want
+    }
 
 });
