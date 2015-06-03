@@ -1,9 +1,7 @@
 $(document).on('ready page:load', function(){
 
   $('#form-drop-down').on('click', '.delete-key', function(event){
-
     var keyId = $('#form-drop-down').find('.secret-url').data('key-id');
-    console.log(keyId)
     $.ajax({
       url: '/keys/' + keyId,
       method: 'delete'
