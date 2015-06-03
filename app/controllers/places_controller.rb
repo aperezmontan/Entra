@@ -70,16 +70,22 @@ class PlacesController < ApplicationController
     render :json => params
   end
 
-  def set_default_place    
-    current_user.default_place = params[:action] == 'remove-default'? nil : @place 
+  def set_default_place  
+    remove_default = params[:place][:action] == 'remove-default' if (params[:place] && params[:place][:action])
+    current_user.default_place = remove_default ? nil : @place 
     saved = current_user.save
     if saved
-      flash[:success] = "#{@place.nickname} is your default place."
+      if remove_default 
+        flash[:notice] = "#{@place.nickname} is no longer your default."
+      else
+        flash[:success] = "#{@place.nickname} is your default place."
+      end
       redirect_url = place_path(@place) 
     else
       flash[:error] = "Couldn't set #{@place.nickname} as your default."
       redirect_url = :back
     end
+
     if request.xhr?
       render json: {updated: saved}
     else

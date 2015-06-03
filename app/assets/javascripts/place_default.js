@@ -9,9 +9,8 @@ var setDefault = function(event){
   $.ajax({
       url: '/place/' + placeId + '/default',
       method: 'PUT',
-      data: {action:action}
+      data: {place: {action:action}}
     }).done(function ( response ) {
-      console.log(response);
       updateDefaultContainer(placeId,action);
     }).fail(function(jqXHR,textStatus){
       
@@ -19,7 +18,6 @@ var setDefault = function(event){
 }
 
 var updateDefaultContainer = function(placeId,action){
-  console.log(action)
   var linkLabel = "";
   if(action == 'remove-default'){
     linkLabel = 'Set this place as your default'
