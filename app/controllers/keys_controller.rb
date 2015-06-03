@@ -63,8 +63,10 @@ class KeysController < ApplicationController
   end
 
   def used_at
+    activity = @key.logs.build()
     @key.used_at = Time.now if (params[:status] == 'opened')
     @key.requested = false if @key.unlimited_access
+    activity.guest_access(@key)
     @key.save
     render :json => params
   end

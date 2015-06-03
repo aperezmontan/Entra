@@ -1,0 +1,3 @@
+<% if log.message.include?("ACTIVITY") %>
+  <i class="fa fa-check"></i><span data-log-time="<%=log.created_at%>"><%= log.message[8..(log.message.length)] %><span class='timestamp'> <%=log.time%> ago</span></span></br>
+<% end %>

@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  
+
   def create
     notification = Notification.new(notification_params)
     message = {notification_status: "success"}
