@@ -32,6 +32,23 @@ class ApplicationController < ActionController::Base
       flash[:error] = "Please sign in."
       redirect_to root_path
     end
+    
+    if params[:controller] == 'places' && place_action_authentication?(params[:action]) && @place.admin != current_user
+      flash[:error] = "Unauthorized"
+      redirect_to logout_path
+    elsif params[:controller] == 'keys' && key_action_authentication?(params[:action]) && @key.place.admin != current_user
+      flash[:error] = "Unauthorized"
+      redirect_to logout_path
+    end
+
+  end
+
+  def place_action_authentication? action
+    [:show, :update, :delete, :key,:set_default_place].include? action
+  end
+
+  def key_action_authentication? action
+    [:update, :used_at, :destroy,:edit].include? action
   end
 
   def flash_message

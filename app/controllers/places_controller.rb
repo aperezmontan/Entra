@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
-  before_action :require_login, only: [:new, :create, :update,:set_default_place]
   before_action :get_place, only: [:show, :update, :delete, :key,:set_default_place]
+  before_action :require_login, except: [:key,:update_master]
   before_action :get_user, only: [:show, :create]
 
   def index
