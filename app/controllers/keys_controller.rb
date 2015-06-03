@@ -54,8 +54,9 @@ class KeysController < ApplicationController
   end
 
   def used_at
-    key.used_at = Time.now if (params[:status] == 'opened')
-    key.save
+    @key.used_at = Time.now if (params[:status] == 'opened')
+    @key.requested = false if @key.unlimited_access
+    @key.save
     render :json => params
   end
 
