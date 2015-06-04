@@ -21,7 +21,8 @@ var addForm = function(selector, url, method, data) {
     })
     .done(function ( response ) {
       response = response + dropDownFooter;
-      $('#form-drop-down').html(response);
+      $('#form-drop-down').html(response).hide();
+      $('#form-drop-down').slideToggle( "slow" )
       if (selector == '#add-key') {
         $('#add-key').hide();
         $('#form-drop-down').find('#cancel-form').addClass('delete-key')
@@ -41,6 +42,6 @@ var addForm = function(selector, url, method, data) {
 var dropDownFooter =
   "<div class='container-fluid cancel-container col-md-12'>"+
   "<br><a href='/' class='pull-left' id='cancel-form'><i class='fa fa-trash-o'></i> Delete Key </a>"+
-  "<a href='/' class='pull-right' id='close-and-save'><i class='fa fa-check'></i> I'm done</p></a>" +
+  "<a href='/im_done' class='pull-right' id='close-and-save'><i class='fa fa-check'></i> I'm done</p></a>" +
   "<br><hr>" +
   "</div>";

@@ -44,6 +44,10 @@ body {
   font-size: 10em;
 }
 
+#giant-key{
+  font-size: 3em;
+}
+
 #giant-lock:hover {
   color: rgba(10,100,15, 0.4);
 }

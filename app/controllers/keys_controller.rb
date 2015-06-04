@@ -27,7 +27,6 @@ class KeysController < ApplicationController
     if @key.save
       respond_to do |format|
         if request.xhr?
-          flash[:success] = "New key created!"
           format.html { render :new, layout: false}
         else
           format.html { render :new }
@@ -60,6 +59,11 @@ class KeysController < ApplicationController
       flash[:success] = "Key reactivated" if saved
       redirect_to place_path(@key.place)
     end
+  end
+
+  def im_done
+    flash[:success] = "New key created!"
+    redirect_to root_path
   end
 
   def used_at
