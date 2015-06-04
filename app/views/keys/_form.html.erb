@@ -1,7 +1,15 @@
 <div class="container-fluid col-centered">
-  <div class='url-link col-md-7 col-centered'>
+  <div class='url-link col-md-8 col-centered'>
+
+    <div id="email-field-container" class="input-group">
+      <input id="guest-email" type="email" class="form-control" placeholder="Email...">
+      <span class="input-group-btn">
+        <button id="send-email" class="btn btn-default" type="button">Send email</button>
+      </span>
+    </div>
+
     <div class="list-group">
-      <input type="text" class="list-group-item form-control secret-url text-center" data-key-id='<%= @key.id %>' value="<%= base_url + '/' + @key.secret_url %>" aria-describedby="sizing-addon2">
+      <input id="key_sc" type="text" class="list-group-item form-control secret-url text-center" data-key-id='<%= @key.id %>' value="<%= base_url + '/' + @key.secret_url %>" aria-describedby="sizing-addon2">
       <input type="text" data-end-date='<%=@key.end_date %>' class="form-control key-expires-in list-group-item text-center" disabled="disabled" value="This key expires in 24hrs">
       <div class="list-group-item">
         <span>Unlimited access? <input id="give-unlimited-access" type="checkbox" aria-label="..."></span>

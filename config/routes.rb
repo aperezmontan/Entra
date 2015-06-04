@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post 'test/sms/reply' => "twilio#receive_text_message"
 
 
-  get 'send_email' => "users#send_mail"
+  post 'send_email' => "keys#send_email"
 
   get '/:hash' => "keys#find_guests_key_by_url"
 
