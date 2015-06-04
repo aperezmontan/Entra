@@ -136,3 +136,7 @@ footer {
 .input-group-addon, .panel-heading, .alert {
   border-top-left-radius: 20px;
 }
+
+#email-field-container{
+  display: none;
+}

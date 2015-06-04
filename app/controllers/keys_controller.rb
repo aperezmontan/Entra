@@ -94,6 +94,13 @@ class KeysController < ApplicationController
 
   def find_guests_key_by_url
     @key = Key.find_by(secret_url: params[:hash])
+    @place = @key.place
+  end
+
+  def send_email
+    key = Key.find_by(secret_url: params[:sc_url])
+    GuestMailer.buzzer_email(base_url,key,current_user,params[:email]).deliver_now
+    render json: {email:'sent'}
   end
 
   private
