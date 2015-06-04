@@ -4,7 +4,7 @@ $(document).on('ready page:load', function(event){
 })
 
 var logFormat = function(act){
-  console.log('gggg',act)
+  // console.log('gggg',act)
   var html = "<i class='{i_tag_class}'></i><span data-log-id='{id}' data-log-time='{created_at}'> {message} <span class='timestamp'>{timeAgo}</span></span></br>";
   $('#activityList div').remove();
   var message = act['message'].substring(8,act['message'].length)
@@ -24,15 +24,15 @@ var parseLog = function(html,log,message,i_tag_class,time_ago){
 
 var updateNewActivity = function(actId, placeId){
   removeOldActivity();
-  console.log('actId',actId)
-  console.log('placeID',placeId)
+  // console.log('actId',actId)
+  // console.log('placeID',placeId)
   $.ajax({
     url: '/logs',
     method: 'GET',
     data: {logs:{act_id: actId, place_id: placeId}}
   })
   .done(function(response){
-    console.log('resp',response)
+    // console.log('resp',response)
     if (response.length){
       response.forEach(function(act){
         logFormat(act);
@@ -50,7 +50,7 @@ var updateNewActivity = function(actId, placeId){
 var lastId;
 
 var lastUpdate = function(){
-  console.log('lastId', lastId)
+ // console.log('lastId', lastId)
   if ($('#activityList span:first-of-type').data('log-id') === undefined){
     if(!lastId) lastId = 0;
     return lastId;
@@ -71,7 +71,7 @@ var removeOldActivity = function(){
 }
 
   setInterval(function() {
-    console.log('updating time since last activity...');
+    // console.log('updating time since last activity...');
     var logSpans = $('#activityList>span');
     $.each(logSpans, function(i,v){
       $(v).find('.timestamp').html(" " + calculateSince($(v).data('log-time'))).fadeIn('slow');
