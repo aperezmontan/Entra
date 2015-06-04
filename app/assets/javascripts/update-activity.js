@@ -62,7 +62,11 @@ var lastUpdate = function(){
 var removeOldActivity = function(){
   if ($('#activityList > span').length > 6){
     $('#activityList > span:gt(6)').fadeOut();
-    $('#activityList > i:gt(6)').fadeOut('slow');
+    $('#activityList > br:gt(6)').fadeOut();
+    $('#activityList > i:gt(6)').fadeOut();
+    // $('#activityList > span:gt(6)').remove();
+    // $('#activityList > i:gt(6)').remove();
+    // $('#activityList > br:gt(6)').remove();
   }
 }
 

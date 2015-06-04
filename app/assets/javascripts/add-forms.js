@@ -15,6 +15,10 @@ $(document).on('ready page:load', function(){
 
 var addForm = function(selector, url, method, data) {
   $(selector).on('click', function(event){
+    //     $(window).animate({
+    //     scrollTop: $(".col-md-12 text-center").offset().top
+    // }, 2000);
+    // $(window).scrollTop(".col-md-12 text-center");
     $.ajax({
       method: method,
       url: url,
