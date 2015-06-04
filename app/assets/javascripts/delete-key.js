@@ -25,5 +25,4 @@ $(document).on('ready page:load', function(){
     clearInterval(refreshTime);
   });
 
-
 })

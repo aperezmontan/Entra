@@ -1,9 +1,11 @@
 <%= form_for @place do |f| %>
 <%=  f.label :nickname, "Name" %>
-<%=  f.text_field :nickname, placeholder: "Home, Work, DBC"  %>
+<%=  f.text_field :nickname, class:'form-control', placeholder: "Home, Work, DBC"  %>
 <%=  f.label :address %>
-<%=  f.text_field :address, placeholder: "48 Wall St" %>
+<%=  f.text_field :address, class:'form-control', placeholder: "48 Wall St" %>
+<br>
 <%=  f.label "Set as default" %>
 <input type="checkbox" name="default" />
-<%=  f.submit %>
+<br><br>
+<%=  f.submit class:'btn btn-default'%>
 <% end %>
