@@ -48,6 +48,11 @@ body {
   font-size: 3em;
 }
 
+#giant-house{
+  font-size: 10em;
+  margin: 0 auto;
+}
+
 #giant-lock:hover {
   color: rgba(10,100,15, 0.4);
 }
