@@ -40,6 +40,7 @@ var addForm = function(selector, url, method, data) {
 
 var dropDownFooter =
   "<div class='container-fluid cancel-container col-md-12'>"+
-  "<a href='/' id='cancel-form'>Cancel And Delete</a>"+
-  "<hr>" +
+  "<br><a href='/' class='pull-left' id='cancel-form'><i class='fa fa-trash-o'></i> Delete Key </a>"+
+  "<a href='/' class='pull-right' id='close-and-save'><i class='fa fa-check'></i> I'm done</p></a>" +
+  "<br><hr>" +
   "</div>";

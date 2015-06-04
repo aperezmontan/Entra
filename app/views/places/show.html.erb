@@ -27,7 +27,7 @@
       <div class="panel-heading"><span class="text-left">Keys</span><i id="add-key" data-place-id='<%=@place.id%>' class="fa fa-plus pull-right"></i></div>
       <% if @user.keys.count > 0 %>
         <ul class="list-group">
-        <%= render @user.keys %>
+        <%= render @user.keys.reverse %>
         </ul>
       <% else %>
         <div>You don't have any keys yet</div>

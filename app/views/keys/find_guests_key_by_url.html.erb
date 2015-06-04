@@ -4,7 +4,7 @@
  <%= render partial: 'places/giant_lock', locals: { name: @key.guest.name, id: @key.id, place_name: @key.place.nickname, tag: 'key'} %>
 
 <% elsif @key.used_at %>
- 
+
   <div id="notification-center" class='col-md-7 col-centered'>
     <p>This key has been already used. Please notify <%= @key.guest.user.first_name %></p>
     <%= render 'keys/notifications' %>
@@ -16,7 +16,7 @@
 
       <% if !@key.requested %>
         <%= render partial: 'places/giant_lock', locals: { name: @key.guest.name, id: @key.id, place_name: @key.place.nickname, tag: 'key'} %>
-      
+        <br>
         <p>This key expires in : </p>
         <div id="available-in"></div>
         <%= javascript_tag do %>
@@ -35,7 +35,6 @@
   </div>
 
 <% end %>
-
 <div id="key-countdown-container" class='container-fluid text-center'>
   <div class='col-md-7 col-centered'>
     <% if @key.has_expired? %>

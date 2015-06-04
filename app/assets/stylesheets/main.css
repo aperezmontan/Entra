@@ -1,6 +1,6 @@
 * {
   font-family: 'Cutive Mono';
-  color: rgba(32, 25, 22, 1);
+  color: rgba(32, 25, 22, 0.92);
 }
 
 .background-image {
@@ -63,7 +63,7 @@ body {
 }
 
 .valid-key {
-  color: rgba(10,100,15, 0.8)
+  color: rgba(10,100,15, 0.8);
 }
 
 .invalid-key {
@@ -93,6 +93,14 @@ footer {
 
 .cancel-container {
   padding: 10px;
+}
+
+#cancel-form {
+  color: rgba(200, 10, 15, 0.8);
+}
+
+#close-and-save {
+  color: rgba(10,120,15, 0.9);
 }
 
 .key-expires-in:disabled {
