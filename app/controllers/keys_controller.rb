@@ -94,6 +94,7 @@ class KeysController < ApplicationController
 
   def find_guests_key_by_url
     @key = Key.find_by(secret_url: params[:hash])
+    @place = @key.place
   end
 
   private
