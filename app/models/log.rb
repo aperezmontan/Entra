@@ -6,11 +6,11 @@ class Log < ActiveRecord::Base
   scope :activity, -> (key_ids, place_id) { Log.where(["(loggable_type = ? and loggable_id in (?) and message like ?) or (loggable_type = ? and loggable_id in (?) and message like ?)","Key",key_ids,'%ACTIVITY%',"Place",place_id,'%ACTIVITY%']) }
 
   def guest_access(key)
-   self.message = "ACTIVITY #{key.guest.name} opened -> #{key.place.nickname}"
+   self.message = "ACTIVITY Opened by -> #{key.guest.name}"
   end
 
   def admin_access(place)
-   self.message = "ACTIVITY You opened -> #{place.nickname}"
+   self.message = "ACTIVITY Opened by -> You"
   end
 
   def new_key_success_message(key)
