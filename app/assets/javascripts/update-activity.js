@@ -1,16 +1,7 @@
 $(document).on('ready page:load', function(event){
   var placeId = $('#giant-lock').data('place-id')
-  updateAllActivity(placeId);
-})
-
-
-var updateAllActivity = function(placeId){
-  activity.forEach(function(act){
-    // logFormat(act);
-  })
   updateNewActivity(0, placeId);
-  console.log('placeID',placeId)
-}
+})
 
 var logFormat = function(act){
   console.log('gggg',act)
@@ -32,6 +23,7 @@ var parseLog = function(html,log,message,i_tag_class,time_ago){
 }
 
 var updateNewActivity = function(actId, placeId){
+  removeOldActivity();
   console.log('actId',actId)
   console.log('placeID',placeId)
   $.ajax({
@@ -49,6 +41,7 @@ var updateNewActivity = function(actId, placeId){
     setTimeout(function(){
       // var placeId = $('#giant-lock').data('place-id')
       updateNewActivity(lastUpdate(), placeId);
+      removeOldActivity();
       // $('#activityList i:first-child').hide().fadeIn('slow')
     },700);
   });
@@ -63,6 +56,13 @@ var lastUpdate = function(){
     return lastId;
    } else{
     return $('#activityList span:first-of-type').data('log-id')
+  }
+}
+
+var removeOldActivity = function(){
+  if ($('#activityList > span').length > 6){
+    $('#activityList > span:gt(6)').fadeOut();
+    $('#activityList > i:gt(6)').fadeOut('slow');
   }
 }
 

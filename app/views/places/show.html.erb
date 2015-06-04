@@ -18,9 +18,6 @@
         <% if @activity.length == 0 %>
           <div>There's been no activity yet</div>
         <% end %>
-        <%= javascript_tag do %>
-          var activity = <%= raw @activity.to_json%>;
-        <% end %>
       </div>
     </div>
     <div class="panel panel-default col-md-6">
