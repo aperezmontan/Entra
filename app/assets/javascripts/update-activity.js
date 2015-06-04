@@ -6,15 +6,15 @@ $(document).on('ready page:load', function(event){
 
 var updateAllActivity = function(placeId){
   activity.forEach(function(act){
-    logFormat(act);
+    // logFormat(act);
   })
-  updateNewActivity(new Date().toISOString(), placeId);
-      // $('#activityList i:first-child').hide().fadeIn('slow')
+  updateNewActivity(0, placeId);
+  console.log('placeID',placeId)
 }
 
 var logFormat = function(act){
   console.log('gggg',act)
-  var html = "<i class='{i_tag_class}'></i><span data-log-time='{created_at}'> {message} <span class='timestamp'>{timeAgo}</span></span></br>";
+  var html = "<i class='{i_tag_class}'></i><span data-log-id='{id}' data-log-time='{created_at}'> {message} <span class='timestamp'>{timeAgo}</span></span></br>";
   $('#activityList div').remove();
   var message = act['message'].substring(8,act['message'].length)
   $('#activityList').prepend(parseLog(html,act,message,"fa fa-check",calculateSince(act['created_at']))).fadeIn('slow');
@@ -27,38 +27,42 @@ var parseLog = function(html,log,message,i_tag_class,time_ago){
   html = html.replace('{message}',message);
   html = html.replace('{i_tag_class}',i_tag_class);
   html = html.replace('{timeAgo}',time_ago);
+  html = html.replace('{id}',log['id']);
   return html;
 }
 
-var updateNewActivity = function(time, placeId){
-  console.log('last',time)
+var updateNewActivity = function(actId, placeId){
+  console.log('actId',actId)
+  console.log('placeID',placeId)
   $.ajax({
     url: '/logs',
     method: 'GET',
-    data: {from_time: time, place_id: placeId}
+    data: {logs:{act_id: actId, place_id: placeId}}
   })
   .done(function(response){
     console.log('resp',response)
-    if (response.length && response[response.length - 1].created_at != time){
+    if (response.length){
       response.forEach(function(act){
         logFormat(act);
       });
     }
     setTimeout(function(){
+      // var placeId = $('#giant-lock').data('place-id')
       updateNewActivity(lastUpdate(), placeId);
+      // $('#activityList i:first-child').hide().fadeIn('slow')
     },700);
   });
 }
 
-var lastDate;
+var lastId;
 
 var lastUpdate = function(){
-  console.log('lastdate', lastDate)
-  if ($('#activityList span:first-of-type').data('log-time') === undefined){
-    if(!lastDate) lastDate = Date.now();
-    return lastDate;
+  console.log('lastId', lastId)
+  if ($('#activityList span:first-of-type').data('log-id') === undefined){
+    if(!lastId) lastId = 0;
+    return lastId;
    } else{
-    return $('#activityList span:first-of-type').data('log-time')
+    return $('#activityList span:first-of-type').data('log-id')
   }
 }
 

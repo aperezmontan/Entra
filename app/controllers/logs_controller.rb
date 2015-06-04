@@ -2,10 +2,17 @@ class LogsController < ApplicationController
   before_action :require_login, only: [:index]
 
   def index
-    place = Place.find_by(id: params[:place_id])
-      time_param = DateTime.iso8601(params[:from_time])
-      @new_activity = Log.activity(place.keys.pluck(:id),place.id).where(["created_at > ?", time_param]).order(created_at: :asc)
-      render json: @new_activity
+    puts "params #{params}"
+    puts params[:place_id]
+    puts params["place_id"]
+    @place = Place.find_by(id: params[:logs][:place_id])
+    puts "place #{@place}"
+    # binding.pry
+    @new_activity = Log.activity(@place.keys.pluck(:id),@place.id).where(["id > ?", params[:logs][:act_id]]).order(created_at: :asc)
+    # puts @place
+    # @new_activity = @place.keys
+    # puts @new_activity
+    render json: @new_activity
   end
 
   private
