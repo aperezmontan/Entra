@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'signup'   => 'users#new'
   root 'sessions#new'
 
+  get 'im_done' => "keys#im_done"
   get 'place/:id/key' => "places#key"
   get 'key/:id/status/:status' => "keys#used_at"
   get 'place/:id/master/:status' => "places#update_master"

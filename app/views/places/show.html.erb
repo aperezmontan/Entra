@@ -18,16 +18,13 @@
         <% if @activity.length == 0 %>
           <div>There's been no activity yet</div>
         <% end %>
-        <%= javascript_tag do %>
-          var activity = <%= raw @activity.to_json%>;
-        <% end %>
       </div>
     </div>
     <div class="panel panel-default col-md-6">
       <div class="panel-heading"><span class="text-left">Keys</span><i id="add-key" data-place-id='<%=@place.id%>' class="fa fa-plus pull-right"></i></div>
       <% if @user.keys.count > 0 %>
         <ul class="list-group">
-        <%= render @user.keys.reverse %>
+        <%= render @user.keys.reverse.last(5) %>
         </ul>
       <% else %>
         <div>You don't have any keys yet</div>
