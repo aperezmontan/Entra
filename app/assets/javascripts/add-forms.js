@@ -24,6 +24,9 @@ var addForm = function(selector, url, method, data) {
       url: url,
     })
     .done(function ( response ) {
+      if (selector == '#add-place') {
+        dropDownFooter = "<br><hr>"
+      }
       response = response + dropDownFooter;
       $('#form-drop-down').html(response).hide();
       $('#form-drop-down').slideToggle( "slow" )
