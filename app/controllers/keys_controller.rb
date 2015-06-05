@@ -54,7 +54,11 @@ class KeysController < ApplicationController
     saved = @key.save
     return flash[:error] = 'Key was not saved' unless saved
     if request.xhr?
-      render json: {updated: saved}
+      if params[:partial]
+        render partial:'key',locals:{key:@key},layout: false
+      else
+        render json: {updated: saved}
+      end
     else
       flash[:success] = "Key reactivated" if saved
       redirect_to place_path(@key.place)
