@@ -3,6 +3,9 @@ $(document).on('ready page:load', function(){
   unlimitedAccessToggle();
   extendAccess();
 
+  $('#keys_container').on('click','.revoke-access',revokeAccess);
+  $('#keys_container').on('click','.grant-unlimeted-access',grantAccess);
+
 })
 
 var extendAccess = function(){
@@ -82,3 +85,33 @@ var unlimitedAccessToggle = function(){
 
   })
 };
+
+var revokeAccess = function(event){
+  var params = {add_days: '1', key: {unlimited_access: false}, partial: true};
+  updateKeyAndGetPartial(event,params);
+}
+
+var grantAccess = function(event){
+  var params = {key: {unlimited_access: true}, partial: true};
+  updateKeyAndGetPartial(event,params);
+}
+
+var updateKeyAndGetPartial = function(event,params){
+  event.preventDefault();
+  var keyId = $(event.target).data('key-id');
+  $.ajax({
+      url: '/keys/' + keyId,
+      method: 'PUT',
+      data: params
+    })
+    .done(function ( response ) {
+      var $content = $($.parseHTML(response));
+      $('#key_' + keyId).html($content.html());
+    })
+    .fail(function(jqXHR,textStatus){
+      /* code ... */
+    })
+    .always(function(jqXHR,textStatus){
+      /* code ... */
+    });
+}

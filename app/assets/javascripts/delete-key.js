@@ -14,7 +14,6 @@ $(document).on('ready page:load', function(){
 
   $('#keys_container').on('click','.del-key-remove',function(event){
     event.preventDefault();
-    console.log('a')
     var keyId = $(event.target).data('key-id');
     deleteKey(keyId,true);
   });
@@ -22,7 +21,6 @@ $(document).on('ready page:load', function(){
 });
 
 var removeKeyFromDom = function(keyId){
-  console.log('del...');
   $("#key_" + keyId).remove();
 }
 
