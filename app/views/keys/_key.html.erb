@@ -1,4 +1,4 @@
-<li class="list-group-item individual-item">
+<li id="key_<%= key.id %>" class="list-group-item individual-item">
   <p>
     <% if (key.end_date > Time.now && key.used_at == nil) || key.unlimited_access == true %>
       <i class="fa fa-key valid-key"></i>
@@ -6,10 +6,11 @@
       <i class="fa fa-key invalid-key"></i>
     <% end %>
     <% if key.unlimited_access %>
-      This key has unlimited access
+      This key has unlimited access <a href='#' class"revoke-access" data-key-id='<%= key.id %>'>revoke</a>
     <% else %>
-      Expires: <%= key.cleaner_time(:end_date) %>
+      Expires: <%= key.cleaner_time(:end_date) %> <a href='#' class="grant-unlimeted-access" data-key-id='<%= key.id %>'>unlimeted</a>
     <% end %>
+    <a href='#' class='pull-right del-key-remove' ><i data-key-id='<%= key.id %>' class='fa fa-trash-o'></i></a>
   </p>
   <%= link_to base_url + '/' + key.secret_url, base_url + '/' + key.secret_url %>
 </li>
