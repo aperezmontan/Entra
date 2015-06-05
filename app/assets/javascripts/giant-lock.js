@@ -1,12 +1,12 @@
 $(document).on('ready page:load', function(){
 
-  $('#unlock-message').css('display', 'none')
-  $('#giant-lock').on('mouseenter', function(event){
-    $('#unlock-message').fadeIn('slow')
-  })
-  $('#giant-lock').on('mouseleave', function(event){
-    $('#unlock-message').fadeOut('slow')
-  })
+  // $('#unlock-message').css('display', 'none')
+  // $('#giant-lock').on('mouseenter', function(event){
+  //   $('#unlock-message').fadeIn('slow')
+  // })
+  // $('#giant-lock').on('mouseleave', function(event){
+  //   $('#unlock-message').fadeOut('slow')
+  // })
 
   $('#giant-lock').on('click', giantLockClicked);
 
@@ -28,7 +28,7 @@ var giantLockForPlaceFn = function(event){
   })
   .done(function ( response ) {
     console.log(response)
-    openLock(event);  
+    openLock(event);
     setTimeout(function(){
       closeLock(event);
       ensureFalse();
@@ -66,8 +66,8 @@ var giantLockForGuestFn = function(event){
     method: 'PUT',
     url: "/keys/" + $(event.target).data('key-id'),
     data: { key:{ requested: 'true' }}
-  }).done(function ( response ) {    
-    openLock(event);  
+  }).done(function ( response ) {
+    openLock(event);
     setTimeout(function(){
       closeLock(event);
       location.reload();

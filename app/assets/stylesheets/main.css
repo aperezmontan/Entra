@@ -52,10 +52,10 @@ body {
   font-size: 10em;
   margin: 0 auto;
 }
-
+/*
 #giant-lock:hover {
   color: rgba(10,100,15, 0.4);
-}
+}*/
 
 #giant-lock-opened {
   font-size: 10em;
@@ -68,7 +68,7 @@ body {
 
 #unlock-message-container {
   height: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
 }
 
 .valid-key {
@@ -81,6 +81,10 @@ body {
 
 footer {
   padding: 10px;
+}
+
+div textarea#message {
+  height: 200px;
 }
 
 .col-centered{
