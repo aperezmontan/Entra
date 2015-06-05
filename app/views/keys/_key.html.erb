@@ -6,7 +6,7 @@
       <i class="fa fa-key invalid-key"></i>
     <% end %>
     <% if key.unlimited_access %>
-      This key has unlimited access <a href='#' class="revoke-access" data-key-id='<%= key.id %>'>revoke</a>
+      This key has unlimited access <a href='#' class="revoke-access" data-key-id='<%= key.id %>'> revoke</a>
     <% else %>
       Expires: <%= key.cleaner_time(:end_date) %> <a href='#' class="grant-unlimeted-access" data-key-id='<%= key.id %>'>unlimeted</a>
     <% end %>
