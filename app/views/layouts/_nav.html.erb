@@ -20,29 +20,11 @@
 
     <div class="collapse navbar-collapse" id="navbar-collapse-2">
       <ul class="nav navbar-nav navbar-right">
-        <% unless logged_in? %>
+      <% unless logged_in? %>
         <li><%= link_to "Sign up",signup_path %></li>
         <li>
-          <%= link_to 'Sign in', '#nav-collapse2',
-            data: {toggle:'collapse'}  %>
+          <%= link_to 'Sign in', login_path %>
         </li>
-      <div class="container-fluid collapse nav navbar-nav nav-collapse" id="nav-collapse2">
-        <%= form_tag sessions_path, class: 'navbar-form navbar-right form-inline' do %>
-        <div class="sign-in form-group">
-          <div class="input-group size">
-            <%= label_tag :email, 'Email', class:'sr-only' %>
-            <%= email_field_tag :email, nil, class: "form-control", placeholder:'Email' %>
-          </div>
-          <div class="input-group size">
-            <%= label_tag :password, 'Password', class:'sr-only' %>
-            <%= password_field_tag :password, nil, class: "form-control", placeholder:'Password' %>
-          </div>
-          <div class="btn-group" role="group" aria-label="...">
-            <%= submit_tag 'Sign In', class: "btn btn-default" %>
-          </div>
-        </div>
-        <% end %>
-      </div>
       <%else%>
         <% current_user.places.each do |place| %>
           <li><%= link_to place.nickname, place_path(place) %></li>

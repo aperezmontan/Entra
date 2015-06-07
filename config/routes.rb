@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'login'   => 'sessions#new'
   get 'logout'  => 'sessions#destroy'
   get 'signup'   => 'users#new'
-  root 'sessions#new'
+  root 'sessions#home'
 
   get 'im_done' => "keys#im_done"
   get 'place/:id/key' => "places#key"

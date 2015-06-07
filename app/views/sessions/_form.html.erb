@@ -1,0 +1,12 @@
+<div class="container-fluid col-md-8 col-centered">
+  <%= form_tag sessions_path, method: 'POST' do %>
+  <div class="form-group">
+    <%=  label_tag :email %>
+    <%=  email_field_tag :email, nil, class:'form-control', placeholder:'@' %>
+    <%=  label_tag :password %>
+    <%=  password_field_tag :password, nil, class: 'form-control', placeholder:'***' %>
+    <br>
+    <%=  submit_tag 'Login', class:'btn btn-default' %>
+    <% end %>
+  </div>
+</div>
