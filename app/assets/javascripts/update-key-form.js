@@ -11,7 +11,6 @@ $(document).on('ready page:load', function(){
 var extendAccess = function(){
   $('#form-drop-down').on('click','#extend-access-container li a', function(event){
     event.preventDefault();
-    console.log($(this).attr('id'))
     if ( $(this).attr('id') === '48_hours') {
       extendAccessAJAX(2, '48hrs')
     } else if ( $(this).attr('id') === '3_days') {
