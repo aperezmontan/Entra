@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to place_path(0)
     else
-      flash[:warning] = "Couldn't create a user"
+      flash[:error] = @user.errors.full_messages.first
       render :new
     end
   end

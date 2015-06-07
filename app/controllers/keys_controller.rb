@@ -86,7 +86,7 @@ class KeysController < ApplicationController
   def destroy
     if @key.destroy
       if request.xhr?
-        flash[:error] = "Key has been deleted"
+        flash[:alert] = "Key has been deleted"
         render json: {deleted: true}
       else
         redirect_to root_path
