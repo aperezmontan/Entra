@@ -37,7 +37,7 @@
 <% end %>
 <div id="key-countdown-container" class='container-fluid text-center'>
   <div class='col-md-7 col-centered'>
-    <% if @key.has_expired? %>
+    <% if @key.has_expired? && !@key.unlimited_access %>
         <p>Your key has expired, notify <%= @key.guest.name %></p>
         <%= render 'keys/notifications' %>
     <% end %>
