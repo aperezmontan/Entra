@@ -19,7 +19,6 @@ var show_ajax_message = function(msg, type) {
 };
 
 $( document ).ajaxComplete(function(event, request) {
-  console.log('ajaxComplete');
     var msg = request.getResponseHeader('X-Message');
     var type = request.getResponseHeader('X-Message-Type');
     if(msg && type){

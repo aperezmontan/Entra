@@ -27,7 +27,6 @@ var giantLockForPlaceFn = function(event){
     url: place_url + '?o=t'
   })
   .done(function ( response ) {
-    console.log(response)
     openLock(event);
     setTimeout(function(){
       closeLock(event);
@@ -57,7 +56,6 @@ var ensureFalse = function(){
     url: place_url
   })
   .done(function ( response ) {
-    console.log(response)
   })
 };
 

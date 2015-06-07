@@ -6,6 +6,8 @@ class Key < ActiveRecord::Base
   belongs_to :guest
   before_create :prepare_for_create
 
+  validates :place_id, :start_date, :end_date, presence: true
+
   def cleaner_time(start_or_end)
     self.send(start_or_end).getlocal.strftime("%a %b %e @ %I:%M %p")
   end
