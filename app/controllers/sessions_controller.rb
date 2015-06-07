@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  def new
+  def home
     if logged_in?
       default = current_user.default_place
       if default
@@ -12,11 +12,14 @@ class SessionsController < ApplicationController
     @home = true
   end
 
+  def new
+  end
+
   def create
     user = User.find_by(email: params[:email])
     if (user && user.authenticate(params[:password]))
       session[:user_id] = user.id
-      self.new
+      redirect_to root_path
     else
       flash[:error] = "Either username or password are incorrect."
       redirect_to login_path
@@ -25,7 +28,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to login_path
+    redirect_to root_path
   end
 
 end
