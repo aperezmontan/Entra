@@ -2,6 +2,7 @@ class PlacesController < ApplicationController
   before_action :get_place, only: [:show, :update, :delete, :key,:set_default_place]
   before_action :require_login, except: [:key,:update_master]
   before_action :get_user, only: [:show, :create]
+  before_action :check_admin, only: [:show]
 
   def index
     @places = Place.where(admin_id: current_user.id)
@@ -130,6 +131,14 @@ class PlacesController < ApplicationController
 
   def get_user
     @user = current_user
+  end
+
+  def check_admin
+    if !@place
+      redirect_to root_path
+    else
+      redirect_to root_path if @place.admin != current_user
+    end
   end
 
 end
